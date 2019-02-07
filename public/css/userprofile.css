@@ -1,0 +1,18 @@
+#username {
+    color: rgb(19, 17, 141);
+    padding: 5px 100px;
+    text-align: center;
+    justify-content: center;
+    display: inline-block;
+}
+
+#back {
+    border: gray;
+    background-color: #e7e7e7; 
+    color: black; 
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

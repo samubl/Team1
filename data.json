@@ -1,0 +1,28 @@
+{
+    "username": "John Smith",
+    "password": "default",
+    "picture": "http://lorempixel.com/200/200/people",
+    "friends": [],
+    "sources": [
+        {
+            "medium": "spotify",
+            "connected": false,
+            "information": []
+        },
+        {
+            "medium": "apple music",
+            "connected": false,
+            "information": []
+        },
+        {
+            "medium": "soundcloud",
+            "connected": false,
+            "information": []
+        },
+        {
+            "medium": "pandora",
+            "connected": false,
+            "information": []
+        }
+    ]
+}
