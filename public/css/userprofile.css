@@ -81,3 +81,35 @@
     text-align: left;
     font: bold;
 }
+
+.stats {
+    display: inline-block;
+    padding: 2px;
+    border: 1px solid rgb(10, 10, 10);
+    border-width: 2px;
+    list-style:none;
+    text-align:center;
+}
+
+.stats li {
+    display: inline;
+    border-bottom: 1px solid rgb(10, 10, 10);
+    border-width: 2px;
+    border-bottom: 20px;
+}
+
+.playlists {
+    display: inline-block;
+    padding: 2px 2px;
+    border: 1px solid rgb(10, 10, 10);
+    border-width: 2px;
+    list-style:none;
+    text-align:center;
+}
+
+.playlists li {
+    display: inline;
+    border-bottom: 1px solid rgb(10, 10, 10);
+    border-width: 2px;
+    border-bottom: 20px;
+}
