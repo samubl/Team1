@@ -9,11 +9,24 @@
 </head>
 <body>
 	<div class="container">
-		<button type="button" id="back">Back</button> <h1 id="username">{{username}}</h1>	
-	</div>
+		<button type="button" onclick="goBack()" id="back">Back</button> 
+		<h1 id="username">{{username}}</h1>	
+		<p>( ͡° ͜ʖ ͡°)</p>
+		<ul class="navbar">
+			<li><a href=#home>Home</a></li>
+			<li><a href=#home class="active">Account</a></li>
+			<li><a href=#home>Friends</a></li>
+			<li><a href=#home>Discover</a></li>
+		</div>
+	</ul>
 
-	<script src="/routes/jquery-1.11.0.js"></script>	
-	<script src="/routes/boostrap.js"></script>
-	<script src="/routes/boostrap.min.js"></script>
+	<script src="/js/jquery-1.11.0.js"></script>	
+	<script src="/js/bootstrap.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script>
+		function goBack(){
+			window.history.back();
+		}
+	</script>
 </body>
 </html>

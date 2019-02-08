@@ -3,7 +3,14 @@
     text-align: center;
     justify-content: center;
 }
-
+#title{
+    text-align: center;
+    justify-content: center;
+}
+#function{
+    text-align: center;
+    justify-content: center;
+}
 #back {
     border: none;
     color: white;
