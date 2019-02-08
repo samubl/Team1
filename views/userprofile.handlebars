@@ -11,7 +11,24 @@
 	<div class="container">
 		<button type="button" onclick="goBack()" id="back">Back</button> 
 		<h1 id="username">{{username}}</h1>	
-		<p>( ͡° ͜ʖ ͡°)</p>
+		<hr>
+		<img src="{{picture}}" id="profilepic">
+		<ul class="genres">
+			<li><a><h5>Favorite Genres</h5></a></li>
+			<li><ul>
+				<li><a href=#home>Genre 1</a></li>
+				<li><a href=#home>Genre 2</a></li>
+				<li><a href=#home>Genre 3</a></li>
+			</ul></li>
+			<li><ul>
+				<li><a class="linked"><h7>Linked Accounts</h7></a></li>
+				<li><a><h7>Spotify</h7></a></li>
+				<li><a><h7>Apple Music</h7></a></li>
+				<li><a><h7>Pandora</h7></a></li>
+				<li><a><h7>Soundcloud</h7></a></li>
+				<li><button type="button" id="addsource">Add</button></li>
+			</ul></li>
+		</ul>
 		<ul class="navbar">
 			<li><a href=#home>Home</a></li>
 			<li><a href=#home class="active">Account</a></li>

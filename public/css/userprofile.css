@@ -48,3 +48,36 @@
   background-color: #000000;
   color: white;
 }
+
+.profilepic {
+    padding: 2px;
+}
+
+.genres {
+    display: inline-block;
+    padding: 2px;
+    border: 1px solid rgb(10, 10, 10);
+    border-width: 2px;
+    list-style:none;
+    text-align:center;
+}
+
+.genres li {
+    display: inline;
+    border-bottom: 1px solid rgb(10, 10, 10);
+    border-width: 2px;
+    border-bottom: 20px;
+}
+
+.genres a {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px;
+    color:#000000;
+}    
+
+.genres .linked {
+    text-align: left;
+    font: bold;
+}
