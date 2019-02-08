@@ -17,6 +17,28 @@
     font-size: 16px;
 }
 
+#changepic {
+    display: none;
+}
+
+#changepic button {
+    text-align: center;
+    text-decoration: none;
+}
+
+#changepic:target {
+    display: inline-block;
+}
+
+#playlistops:target {
+    display: inline-block;
+    padding: 2px 2px;
+    border: 1px solid rgb(10, 10, 10);
+    border-width: 1px;
+    list-style:none;
+    text-align:left;
+}
+
 /* Place the navbar at the bottom of the page, and make it stick */
 .navbar{
     border:1px solid #ccc;
@@ -54,8 +76,8 @@
 }
 
 .genres {
-    display: inline-block;
-    padding: 2px;
+    display: inline-table;
+    padding: 20px;
     border: 1px solid rgb(10, 10, 10);
     border-width: 2px;
     list-style:none;
@@ -67,15 +89,7 @@
     border-bottom: 1px solid rgb(10, 10, 10);
     border-width: 2px;
     border-bottom: 20px;
-}
-
-.genres a {
-    display: inline-block;
-    text-decoration: none;
-    text-align: center;
-    padding: 5px;
-    color:#000000;
-}    
+}   
 
 .genres .linked {
     text-align: left;
@@ -83,7 +97,7 @@
 }
 
 .stats {
-    display: inline-block;
+    display: inline-table;
     padding: 2px;
     border: 1px solid rgb(10, 10, 10);
     border-width: 2px;
@@ -99,7 +113,7 @@
 }
 
 .playlists {
-    display: inline-block;
+    display: inline-table;
     padding: 2px 2px;
     border: 1px solid rgb(10, 10, 10);
     border-width: 2px;
@@ -113,3 +127,24 @@
     border-width: 2px;
     border-bottom: 20px;
 }
+
+#playlistops {
+    display: none;
+}
+
+#playlistops li {
+    display: block;
+    border-bottom: 1px solid rgb(10, 10, 10);
+    border-width: 2px;
+    border-bottom: 20px;
+}
+
+#playlistops:target {
+    display: inline-block;
+    padding: 2px 2px;
+    border: 1px solid rgb(10, 10, 10);
+    border-width: 1px;
+    list-style:none;
+    text-align:left;
+}
+

@@ -13,8 +13,11 @@
 		<h1 id="username">{{username}}</h1>	
 		<hr>
 		<img src="{{picture}}" id="profilepic">
+		<div id="changepic">
+			<button type="button">Back</button> 
+		</div>
 		<ul class="genres">
-			<li><a><h5>Favorite Genres</h5></a></li>
+			<li><h5>Favorite Genres</h5></li>
 			<hr>
 			<li><ul>
 				<li><a>Genre 1</a></li>
@@ -23,7 +26,7 @@
 			</ul></li>
 			<hr>
 			<li><ul>
-				<li><a class="linked"><h7>Linked Accounts</h7></a></li>
+				<li><h7 class="linked">Linked Accounts</h7></li>
 				<li><a>Spotify</a></li>
 				<li><a>Apple Music</a></li>
 				<li><a>Pandora</a></li>
@@ -42,16 +45,24 @@
 		<h3>Favorites</h3>
 		<ul class="playlists">
 			<ul>
-				<li><a>Playlist 4</a></li>
-				<li><a>Playlist 5</a></li>
-				<li><a>Playlist 6</a></li>
+				<li><a href="#playlistops">Playlist 1</a></li>
+				<li><a href="#playlistops">Playlist 2</a></li>
+				<li><a href="#playlistops">Playlist 3</a></li>
 			</ul>
 			<ul>
-				<li><a>Playlist 4</a></li>
-				<li><a>Playlist 5</a></li>
-				<li><a>Playlist 6</a></li>
-			</ul>
+				<li><a href="#playlistops">Playlist 4</a></li>
+				<li><a href="#playlistops">Playlist 5</a></li>
+				<li><a href="#playlistops">Playlist 6</a></li>
+			</ul>	
 		</ul>
+		<div id="playlistops">
+				<ul>
+					<li><a>Open from</a></li>
+					<li><a>Share to</a></li>
+					<li><a>Like</a></li>
+					<li><a>Similar Lists</a></li>
+				</ul>
+		</div>
 		<hr>
 		<ul class="navbar">
 			<li><a href="/">Home</a></li>
