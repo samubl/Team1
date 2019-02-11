@@ -6,22 +6,28 @@
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="/css/discover.css" rel="stylesheet">
+	<link href="/css/constants.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
+		<!-- Discover Page back button and title -->
 		<button type="button" onclick="goBack()" id="back">Back</button> 
 		<h1 id="friends">Discover</h1><hr>
+		<!-- Navbar section -->
 		<ul class="navbar">
 			<li><a href="/">Home</a></li>
-			<li><a href="{{username}}" class="active">Account</a></li>
-			<li><a href='{{username}}/Friends'>Friends</a></li>
-			<li><a href="{{username}}/Discover">Discover</a></li>
+			<li><a href="/{{username}}">Account</a></li>
+			<li><a href='/{{username}}/Friends'>Friends</a></li>
+			<li><a href="/{{username}}/Discover" class="active">Discover</a></li>
+		</ul>	
 		</ul>
 	</div>
 
+	<!-- connected javascript files -->
 	<script src="/js/jquery-1.11.0.js"></script>	
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/discover.js"></script>
 	<script>
 		function goBack(){
 			window.history.back();

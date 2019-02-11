@@ -3,28 +3,36 @@
 	<title>Team1 J. Smith Homepage</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Linked css files -->
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="/css/userprofile.css" rel="stylesheet">
+	<link href="/css/constants.css" rel="stylesheet">
 </head>
 <body>
+	<!-- bootstrap container for page content -->
 	<div class="container">
+		<!-- Back Button -->
 		<button type="button" onclick="goBack()" id="back">Back</button> 
+		<!-- Username -->		
 		<h1 id="username">{{username}}</h1>	
-		<hr>
-		<img src="{{picture}}" id="profilepic">
+		<!-- Profile Picture -->
+		<a href="#changepic"><img src="{{picture}}" id="profilepic"></a>
 		<div id="changepic">
-			<button type="button">Back</button> 
+			<button type="button">Change</button> 
 		</div>
+		<!-- Genres Table -->
 		<ul class="genres">
 			<li><h5>Favorite Genres</h5></li>
 			<hr>
+			<!-- Top 3 Genres -->
 			<li><ul>
 				<li><a>Genre 1</a></li>
 				<li><a>Genre 2</a></li>
 				<li><a>Genre 3</a></li>
 			</ul></li>
 			<hr>
+			<!-- Linked Music Accounts, Add Button -->
 			<li><ul>
 				<li><h7 class="linked">Linked Accounts</h7></li>
 				<li><a>Spotify</a></li>
@@ -35,6 +43,7 @@
 			</ul></li>
 		</ul>
 		<hr>
+		<!-- Statistics Table -->
 		<h3>Statistics</h3>
 		<ul class="stats">
 			<li><h7>Stats 1</h7></li>
@@ -42,6 +51,7 @@
 			<li><h7>Stats 3</h7></li>
 		</ul>
 		<hr>
+		<!-- Favorites Table -->
 		<h3>Favorites</h3>
 		<ul class="playlists">
 			<ul>
@@ -55,6 +65,7 @@
 				<li><a href="#playlistops">Playlist 6</a></li>
 			</ul>	
 		</ul>
+		<!-- Favorites Options -->
 		<div id="playlistops">
 				<ul>
 					<li><a>Open from</a></li>
@@ -64,17 +75,20 @@
 				</ul>
 		</div>
 		<hr>
+		<!-- Navbar Section -->
 		<ul class="navbar">
 			<li><a href="/">Home</a></li>
-			<li><a href="{{username}}" class="active">Account</a></li>
-			<li><a href='{{username}}/Friends'>Friends</a></li>
-			<li><a href="{{username}}/Discover">Discover</a></li>
+			<li><a href="/{{username}}" class="active">Account</a></li>
+			<li><a href='/{{username}}/Friends'>Friends</a></li>
+			<li><a href="/{{username}}/Discover">Discover</a></li>	
 		</ul>
 	</div>
 
+	<!-- connected javascript files -->
 	<script src="/js/jquery-1.11.0.js"></script>	
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/userprofile.js"></script>
 	<script>
 		function goBack(){
 			window.history.back();
