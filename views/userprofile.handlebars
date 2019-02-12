@@ -12,16 +12,23 @@
 <body>
 	<!-- bootstrap container for page content -->
 	<div class="container">
-		<!-- Back Button -->
-		<button type="button" onclick="goBack()" id="back">Back</button> 
-		<!-- Username -->		
-		<h1 id="username">{{username}}</h1>	
-		<!-- Profile Picture -->
-		<a href="#changepic"><img src="{{picture}}" id="profilepic"></a>
-		<div id="changepic">
+		<!-- Back Button, Username -->
+		<div class="backandname">
+			<button type="button" onclick="goBack()" id="back">Back</button> 
+			<h1>{{username}}</h1>
+		</div>	
+		<div class="picandlinks">
+			<!-- Profile Picture -->
+			<a href="#changepic"><img src="{{picture}}"></a>
+			<!-- Links to Stats and Favorites user pages -->
+			<h4><a href="/{{username}}/statistics">Statistics</a></h4><hr>
+			<h4><a href="/{{username}}/favorites">Playlists</a></h4>
+		</div>
+		<hr>
+		<div id="changepic"> <!-- TODO change to js event handler -->
 			<button type="button">Change</button> 
 		</div>
-		<!-- Genres Table -->
+		<!-- At a Glance Table -->
 		<ul class="genres">
 			<li><h5>Favorite Genres</h5></li>
 			<hr>
@@ -41,14 +48,6 @@
 				<li><a>Soundcloud</a></li>
 				<li><button type="button" id="addsource">Add</button></li>
 			</ul></li>
-		</ul>
-		<hr>
-		<!-- Statistics Table -->
-		<h3>Statistics</h3>
-		<ul class="stats">
-			<li><h7>Stats 1</h7></li>
-			<li><h7>Stats 2</h7></li>
-			<li><h7>Stats 3</h7></li>
 		</ul>
 		<hr>
 		<!-- Favorites Table -->
