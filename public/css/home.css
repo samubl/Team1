@@ -4,13 +4,24 @@
     justify-content: center;
 }
 
-#title {
+.title {
     text-align: center;
+    height:5%;
+    width:100%;
 }
 .function {
     text-align:center;
+    height:10%;
+    width:100%;
 }
-
+.spacer{
+    width:100%;
+    height:10%;
+}
+.spacer2{
+    width:100%;
+    height:5%;
+}
 /* Place the navbar at the bottom of the page, and make it stick */
 .navbar{
     border:1px solid #ccc;
