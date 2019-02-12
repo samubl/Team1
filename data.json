@@ -1,7 +1,7 @@
 {
     "username": "John Smith",
     "password": "default",
-    "picture": "http://lorempixel.com/200/200/people",
+    "picture": "http://lorempixel.com/500/500/people",
     "friends": [],
     "sources": [
         {
