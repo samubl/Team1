@@ -17,37 +17,40 @@
 			<button type="button" onclick="goBack()" id="back">Back</button> 
 			<h1>{{username}}</h1>
 		</div>	
+		<div class="pic-spacer"></div>
 		<div class="picandlinks">
 			<!-- Profile Picture -->
 			<div class="pic-container">
-				<div class="pic-spacer"></div>
 				<a><img src="{{picture}}"></a>
 			</div>
 			<div class="sub">
 				<!-- Links to Stats and Favorites user pages -->
-				<h4><a href="/{{username}}/statistics">Statistics</a></h4><hr>
-				<h4><a href="/{{username}}/favorites">Playlists</a></h4>
+				<h3><a href="/{{username}}/statistics">Statistics </a><span class="glyphicon glyphicon-stats"></span></h3><hr>
+				<h3><a href="/{{username}}/favorites">Playlists</a></h3>
 			</div>
 		</div>
 		<hr>
 		<!-- At a Glance Table -->
-		<ul class="genres">
-			<li><h5>Favorite Genres</h5></li>
-			<hr>
+		<ul class="glance">
+			<li><h3>At a Glance</h3></li>
 			<!-- Top 3 Genres -->
-			<li><ul>
-				<li><a>Hip-Pop, </a></li>
-				<li><a>Indie, </a></li>
-				<li><a>Rock</a></li>
+			<li><ul class="topgenres">
+				<li>Top 3 Genres:</li>
+				{{#with statistics}}
+					{{#each genres}}
+						<li><a>{{genre}}</a></li>
+					{{/each}}
+				{{/with}}
 			</ul></li>
 			<hr>
 			<!-- Linked Music Accounts, Add Button -->
 			<li><ul>
-				<li><h7 class="linked">Linked Accounts</h7></li>
-				<li><a>Spotify</a></li>
-				<li><a>Apple Music</a></li>
-				<li><a>Pandora</a></li>
-				<li><a>Soundcloud</a></li>
+				<li><h7 class="linked">Linked Accounts: </h7></li>
+				{{#each sources}}
+					{{#if connected}}
+						<li><a href={{link}}>{{medium}}</a></li>
+					{{/if}}
+				{{/each}}
 				<li><button type="button" id="addsource">Add</button></li>
 			</ul></li>
 		</ul>

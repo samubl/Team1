@@ -6,75 +6,51 @@
     padding-left: 20px;
 }
 
-/* Profile Picture and Statistics and Favorites Section */
-.picandlinks {
-    position: relative;
-    overflow:hidden;
-    padding: 0px;
-    margin:5px;
-    width: 100%;
-    height: 200px;
-}
+/* Spacer between top of page and profile picture */
 .pic-spacer{
     width:100%;
     height:10%;
     max-height:20px;
 }
+
+/* Profile Picture and Statistics and Favorites Section */
+.picandlinks {
+    position: relative;
+    overflow: hidden;
+    padding: 0px;
+    margin: 5px;
+    width: 100%;
+    height: 200px;
+}
 .pic-container{
-    width:25%;
-    height:100%;
+    width: 50%;
+    height: 100%;
     margin: 0 auto;
     padding: 0px;
     float: left;
     text-align: center;
 }
-.sub{
-    width:75%;
-    height:100%;
-    margin: 0 auto;
-    padding:0px;
-    float: left;
-    text-align: center;
-    vertical-align:middle;
-}
-/*image size and margin*/
-.picandlinks {
-    position: relative;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 425px;
-    height: 150px;
-    align: center;
-}
-
 .picandlinks a img {
     float: left;
-    max-width: 50%;
+    max-width: 100%;
     max-height: 100%;
 }
-
-.picandlinks h4 {
+.sub{
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0px;
+    float: right;
+    text-align: left;
+    vertical-align: middle;
+}
+.picandlinks h3 {
     display: inline-block;
     padding-left: 10px;
     text-align: left;
+    font: 18px;
     max-width: 100%;
     max-height: 50%;
-}
-
-.stats {
-    display: inline-table;
-    padding: 2px;
-    border: 1px solid rgb(10, 10, 10);
-    border-width: 2px;
-    list-style:none;
-    text-align:center;
-}
-
-.stats li {
-    display: inline;
-    border-bottom: 1px solid rgb(10, 10, 10);
-    border-width: 2px;
-    border-bottom: 20px;
 }
 
 /* Change Profile Picture Button */
@@ -91,23 +67,27 @@
     display: inline-block;
 }
 
-.genres {
+.glance {
     display: inline-table;
-    padding: 20px;
+    padding: 5px;
     border: 1px solid rgb(10, 10, 10);
     border-width: 2px;
-    list-style:none;
-    text-align:center;
+    list-style: none;
+    text-align: center;
 }
 
-.genres li {
+.glance li {
     display: inline;
-    border-bottom: 1px solid rgb(10, 10, 10);
-    border-width: 2px;
-    border-bottom: 20px;
+    border-width: 5px;
+    border-bottom: 1px;
 }   
 
-.genres .linked {
+.glance .linked {
     text-align: left;
     font: bold;
+}
+
+.topgenres a {
+    text-align: center;
+    padding-block-end: 5px;
 }

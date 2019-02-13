@@ -1,27 +1,63 @@
 {
     "username": "John Smith",
     "password": "default",
-    "picture": "http://lorempixel.com/500/500/people",
+    "picture": "http://lorempixel.com/200/200/people",
+    "statistics": {
+        "genres": [
+            {
+                "genre": "Hip-Hop",
+                "minutes": 5000,
+                "lastsong": "Gangster's Paradise",
+                "lastartist": "Coolio",
+                "source": "spotify"
+    
+            },
+            {
+                "genre": "Pop",
+                "minutes": 1000,
+                "lastsong": "thank u, next",
+                "lastartist": "Ariana Grande",
+                "source": "apple music"
+            },
+            {
+                "genre": "Indie Rock",
+                "minutes": 500,
+                "lastsong": "Static Space Lover",
+                "lastartist": "Foster the People",
+                "source": "spotify"
+            }
+        ],
+        "lastlistened": {
+            "lastsong": "Gangster's Paradise",
+            "lastartist": "Coolio",
+            "source": "spotify",
+            "time": "12:30 PM"
+        }
+    },
     "friends": [],
     "sources": [
         {
-            "medium": "spotify",
-            "connected": false,
+            "medium": "Spotify",
+            "connected": true,
+            "link": "https://www.spotify.com/us/",
             "information": []
         },
         {
-            "medium": "apple music",
+            "medium": "Apple Music",
             "connected": false,
+            "link": "https://www.apple.com/music/",
             "information": []
         },
         {
-            "medium": "soundcloud",
+            "medium": "SoundCloud",
             "connected": false,
+            "link": "https://soundcloud.com/",
             "information": []
         },
         {
-            "medium": "pandora",
+            "medium": "Pandora",
             "connected": false,
+            "link": "https://www.pandora.com/",
             "information": []
         }
     ]
