@@ -19,10 +19,15 @@
 		</div>	
 		<div class="picandlinks">
 			<!-- Profile Picture -->
-			<a><img src="{{picture}}"></a>
-			<!-- Links to Stats and Favorites user pages -->
-			<h4><a href="/{{username}}/statistics">Statistics</a></h4><hr>
-			<h4><a href="/{{username}}/favorites">Playlists</a></h4>
+			<div class="pic-container">
+				<div class="pic-spacer"></div>
+				<a><img src="{{picture}}"></a>
+			</div>
+			<div class="sub">
+				<!-- Links to Stats and Favorites user pages -->
+				<h4><a href="/{{username}}/statistics">Statistics</a></h4><hr>
+				<h4><a href="/{{username}}/favorites">Playlists</a></h4>
+			</div>
 		</div>
 		<hr>
 		<!-- At a Glance Table -->
