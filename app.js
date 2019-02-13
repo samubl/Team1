@@ -13,6 +13,7 @@ var userprofile = require('./routes/userprofile');
 var favorites = require("./routes/favorites")
 var friends = require('./routes/friends');
 var discover = require('./routes/discover');
+var login = require('./routes/login');
 // Example route
 // var user = require('./routes/user');
 
@@ -38,11 +39,12 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', index.view);
+app.get('/:username/index', index.view);
 app.get('/:username', userprofile.view);
 app.get('/:username/friends', friends.view);
 app.get('/:username/discover', discover.view);
 app.get('/:username/favorites', favorites.view);
+app.get('/',login.view);
 
 // Example route
 // app.get('/users', user.list);
