@@ -1,13 +1,13 @@
 <html>
 <head>
-	<title>J. Smith Homepage</title>
+	<title>J. Smith Favorites</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Linked css files -->
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="/css/userprofile.css" rel="stylesheet">
 	<link href="/css/constants.css" rel="stylesheet">
+    <link href="/css/favorites.css" rel="stylesheet">
 </head>
 <body>
 	<!-- bootstrap container for page content -->
@@ -15,37 +15,30 @@
 		<!-- Back Button, Username -->
 		<div class="backandname">
 			<button type="button" onclick="goBack()" id="back">Back</button> 
-			<h1>{{username}}</h1>
+			<h1>Favorites</h1>
 		</div>	
-		<div class="picandlinks">
-			<!-- Profile Picture -->
-			<a><img src="{{picture}}"></a>
-			<!-- Links to Stats and Favorites user pages -->
-			<h4><a href="/{{username}}/statistics">Statistics</a></h4><hr>
-			<h4><a href="/{{username}}/favorites">Playlists</a></h4>
-		</div>
-		<hr>
-		<!-- At a Glance Table -->
-		<ul class="genres">
-			<li><h5>Favorite Genres</h5></li>
-			<hr>
-			<!-- Top 3 Genres -->
-			<li><ul>
-				<li><a>Genre 1</a></li>
-				<li><a>Genre 2</a></li>
-				<li><a>Genre 3</a></li>
-			</ul></li>
-			<hr>
-			<!-- Linked Music Accounts, Add Button -->
-			<li><ul>
-				<li><h7 class="linked">Linked Accounts</h7></li>
-				<li><a>Spotify</a></li>
-				<li><a>Apple Music</a></li>
-				<li><a>Pandora</a></li>
-				<li><a>Soundcloud</a></li>
-				<li><button type="button" id="addsource">Add</button></li>
-			</ul></li>
+		<h3>Favorites</h3>
+		<ul class="playlists">
+			<ul>
+				<li><a href="#playlistops">Playlist 1</a></li>
+				<li><a href="#playlistops">Playlist 2</a></li>
+				<li><a href="#playlistops">Playlist 3</a></li>
+			</ul>
+			<ul>
+				<li><a href="#playlistops">Playlist 4</a></li>
+				<li><a href="#playlistops">Playlist 5</a></li>
+				<li><a href="#playlistops">Playlist 6</a></li>
+			</ul>	
 		</ul>
+		<!-- Favorites Options -->
+		<div id="playlistops">
+				<ul>
+					<li><a>Open from</a></li>
+					<li><a>Share to</a></li>
+					<li><a>Like</a></li>
+					<li><a>Similar Lists</a></li>
+				</ul>
+		</div>
 		<hr>
 		<!-- Navbar Section -->
 		<ul class="navbar">
@@ -60,7 +53,7 @@
 	<script src="/js/jquery-1.11.0.js"></script>	
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/userprofile.js"></script>
+	<script src="/js/favorites.js"></script>
 	<script>
 		function goBack(){
 			window.history.back();
