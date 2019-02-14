@@ -69,17 +69,20 @@
 
 /* At a glance section */
 .glance {
-    display: inline-table;
+    width: 100%;
+    height: 40%;
+}
+.glance ul{
+    display: inline-block;
     padding: 5px;
     border-width: 2px;
     list-style: none;
     text-align: center;
-    width: 100%;
-    height: 40%;
+    font-size: 20px;
 }
 
 .glance li {
-    float: left;
+    display: inline-block;
     text-align: center;
     border-width: 5px;
     border-bottom: 1px;
@@ -91,13 +94,12 @@
 }
 
 #addsource {
-    display: inline-block;
+    float: right;
     text-align: center;
     border: gray;
     color: black; 
     background-color: #e7e7e7; 
     font-size: 14px;
-    float: right;
 }
 
 .topgenres a {
