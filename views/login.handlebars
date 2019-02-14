@@ -6,12 +6,37 @@
 	<!-- Linked css files -->
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/login.css" rel="stylesheet">
 </head>
 <body>
-	<p><a href="/{{username}}/index">Home</a></p>
+	<div class="container">
+		<h1 class="title">CISUM</h1>
+		<center>
+			<div class="login-table">
+			<div class="form-group">
+				<label for="name">Username:</label>
+				<br>
+				<input type="text" class="form-control" id="name" placeholder name="name">
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label>
+				<br>
+				<input type="text" class="form-control" id="password" placeholder name="pswd">
+			</div>
+			<form action="/{{username}}/index">
+				<input type="submit" value="Login">
+			</form>
+		</div>
+		</center>
+	</div>
 	<script src="/js/jquery-1.11.0.js"></script>	
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/login.js"></script>
+	<script>
+		function login(){
+
+		}
+	</script>
 </body>
 </html>

@@ -10,6 +10,11 @@
     font-size: 16px;
 }
 
+/*Container Color*/
+.container{
+    height:100%;
+    background-color: #F3FFFF;
+}
 /* Place the navbar at the bottom of the page, and make it stick */
 .navbar{
     border:1px solid #ccc;

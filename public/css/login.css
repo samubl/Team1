@@ -1,0 +1,32 @@
+.title{
+	text-align: center;
+	color:#ff1544;
+	margin:30%;
+	margin-top:7%;
+}
+
+.container{
+	background-color: #F3FFFF;
+	height:100%;
+}
+
+.login-table{
+	border: 3px solid #f1f1f1;
+	padding: 14px 20px;
+  	margin: 8px 0;
+
+}
+form input {
+  background-color: #0000ff;
+  padding: 14px 20px;
+  margin: 8px 0;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+}
+
+.spacer{
+    width:100%;
+    height:5%;
+}
