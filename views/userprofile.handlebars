@@ -17,44 +17,57 @@
 			<button type="button" onclick="goBack()" id="back">Back</button> 
 			<h1>{{username}}</h1>
 		</div>	
-		<div class="pic-spacer"></div>
+		<div class="spacer"></div>
 		<div class="picandlinks">
 			<!-- Profile Picture -->
 			<div class="pic-container">
 				<a><img src="{{picture}}"></a>
+				<!-- Add a way to change it -->
 			</div>
 			<div class="sub">
-				<!-- Links to Stats and Favorites user pages -->
+				<!-- Links to Stats and Favorites user pages. Need to add link to Stats page and fill those pages -->
 				<h3><a href="/{{username}}/statistics">Statistics </a><span class="glyphicon glyphicon-stats"></span></h3><hr>
 				<h3><a href="/{{username}}/favorites">Playlists</a></h3>
 			</div>
 		</div>
-		<hr>
 		<!-- At a Glance Table -->
-		<ul class="glance">
-			<li><h3>At a Glance</h3></li>
-			<!-- Top 3 Genres -->
-			<li><ul class="topgenres">
-				<li>Top 3 Genres:</li>
-				{{#with statistics}}
-					{{#each genres}}
-						<li><a>{{genre}}</a></li>
+		<div>
+			<ul class="glance">
+				<li><h3>At a Glance</h3></li>
+				<div class="spacer"></div>
+				<!-- Top 3 Genres -->
+				<li><ul class="topgenres">
+					<li>Top 3 Genres:</li>
+					{{#with statistics}}
+						{{#each genres}}
+							<li class="genre"><a>{{genre}}</a></li>
+						{{/each}}
+					{{/with}}
+				</ul></li>
+				<hr>
+				<!-- Last Listened to Song and from where -->
+				<li><ul class="lastlistened">
+					{{#with statistics}}
+						{{#with lastlistened}}
+							<li>Last Listened to:</li>
+							<li><a href="{{songlink}}">{{song}}</a> by <a href="{{artistlink}}">{{artist}}</a></li>
+							<li>From <a href="{{sourcelink}}">{{source}}</a> at {{time}}</li>
+						{{/with}}
+					{{/with}}
+				</ul></li>
+				<hr>
+				<!-- Linked Music Accounts, Add Button -->
+				<li><ul>
+					<li><h7 class="linked">Linked Accounts: </h7></li>
+					{{#each sources}}
+						{{#if connected}}
+							<li><a href={{link}}>{{medium}}</a></li>
+						{{/if}}
 					{{/each}}
-				{{/with}}
-			</ul></li>
-			<hr>
-			<!-- Linked Music Accounts, Add Button -->
-			<li><ul>
-				<li><h7 class="linked">Linked Accounts: </h7></li>
-				{{#each sources}}
-					{{#if connected}}
-						<li><a href={{link}}>{{medium}}</a></li>
-					{{/if}}
-				{{/each}}
-				<li><button type="button" id="addsource">Add</button></li>
-			</ul></li>
-		</ul>
-		<hr>
+				</ul></li>
+				<li><button type="button" id="addsource">Add Source</button></li>
+			</ul>
+		</div>
 		<!-- Navbar Section -->
 		<ul class="navbar">
 			<li><a href="/{{username}}/index">Home</a></li>

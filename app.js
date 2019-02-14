@@ -11,6 +11,7 @@ var handlebars = require('express3-handlebars')
 var index = require('./routes/index');
 var userprofile = require('./routes/userprofile');
 var favorites = require("./routes/favorites")
+var statistics = require("./routes/statistics")
 var friends = require('./routes/friends');
 var discover = require('./routes/discover');
 var login = require('./routes/login');
@@ -44,6 +45,7 @@ app.get('/:username', userprofile.view);
 app.get('/:username/friends', friends.view);
 app.get('/:username/discover', discover.view);
 app.get('/:username/favorites', favorites.view);
+app.get('/:username/statistics', statistics.view);
 app.get('/',login.view);
 
 // Example route

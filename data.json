@@ -28,10 +28,13 @@
             }
         ],
         "lastlistened": {
-            "lastsong": "Gangster's Paradise",
-            "lastartist": "Coolio",
-            "source": "spotify",
-            "time": "12:30 PM"
+            "song": "Gangster's Paradise",
+            "artist": "Coolio",
+            "source": "Spotify",
+            "time": "12:30 PM",
+            "songlink": "https://open.spotify.com/track/7lQWRAjyhTpCWFC0jmclT4?si=phLulMdETYy8r-y0dNVXkA",
+            "artistlink": "https://open.spotify.com/artist/3y24n3XhZ96wgwRXjvS17T?si=hU8dXl4DQ7i67yi2emYPkA",
+            "sourcelink": "https://www.spotify.com/us/"
         }
     },
     "friends": [],
