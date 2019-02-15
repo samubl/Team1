@@ -1,3 +1,13 @@
+h2{
+    color:#ff0000;
+}
+.backandname p{
+    color:#3CB371;
+}
+img{
+    max-width:195px;
+    max-height:195px;
+}
 .playlists {
     display: inline-table;
     padding: 2px 2px;
@@ -5,6 +15,32 @@
     border-width: 2px;
     list-style:none;
     text-align:center;
+}
+
+.row{
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+    height:29%
+}
+.thumbnail{
+    display:block;
+    border-style:hidden;
+    box-shadow:none;
+    background-color: transparent;
+    float:left;
+    width:45%;
+    text-align:center;
+    height:28%;
+    margin:5px;
+    vertical-align:top;
+}
+
+.thumbnail span{
+    position:absolute;
+    bottom:0;
 }
 
 .playlists li {
