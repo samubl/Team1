@@ -1,9 +1,12 @@
 h2{
     color:#ff0000;
 }
-
 .backandname p{
     color:#3CB371;
+}
+img{
+    max-width:195px;
+    max-height:195px;
 }
 .playlists {
     display: inline-table;
@@ -23,12 +26,15 @@ h2{
     height:29%
 }
 .thumbnail{
-    display:inline-block;
+    display:block;
+    border-style:hidden;
+    box-shadow:none;
+    background-color: transparent;
     float:left;
     width:45%;
     text-align:center;
     height:28%;
-    margin:2%;
+    margin:5px;
     vertical-align:top;
 }
 
