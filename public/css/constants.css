@@ -12,7 +12,7 @@
 
 /*Container Color*/
 .container{
-    height:100%;
+    min-height:100%;
     background-color: #F3FFFF;
 }
 /* Place the navbar at the bottom of the page, and make it stick */
