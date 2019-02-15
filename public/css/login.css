@@ -7,7 +7,8 @@
 
 .container{
 	background-color: #F3FFFF;
-	height:100%;
+  max-width:414px;
+  min-height:100%;
 }
 
 .login-table{
