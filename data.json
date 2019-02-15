@@ -43,7 +43,9 @@
             "medium": "Spotify",
             "connected": true,
             "link": "https://www.spotify.com/us/",
-            "information": []
+            "information": {
+                "username": "blaksamu"
+            }
         },
         {
             "medium": "Apple Music",

@@ -34,7 +34,6 @@
 		<div class="glance">
 			<ul>
 				<li><h3>At a Glance</h3></li>
-				<div class="spacer"></div>
 				<!-- Top 3 Genres -->
 				<li><ul class="topgenres">
 					<li>Top 3 Genres:</li>
@@ -44,7 +43,6 @@
 						{{/each}}
 					{{/with}}
 				</ul></li>
-				<hr>
 				<!-- Last Listened to Song and from where -->
 				<li><ul class="lastlistened">
 					{{#with statistics}}
@@ -55,7 +53,6 @@
 						{{/with}}
 					{{/with}}
 				</ul></li>
-				<hr>
 				<!-- Linked Music Accounts, Add Button -->
 				<li><ul>
 					<li><h7 class="linked">Linked Accounts: </h7></li>
@@ -67,6 +64,7 @@
 				</ul></li>
 			</ul>
 			<button type="button" id="addsource">Add Source</button></li>
+			<div class="sourceops"></div>
 		</div>
 		<!-- Navbar Section -->
 		<ul class="navbar">
@@ -81,7 +79,7 @@
 	<script src="/js/jquery-1.11.0.js"></script>	
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/userprofile.js"></script>
+	<script src="/js/userprofilehelper.js"></script>
 	<script>
 		function goBack(){
 			window.history.back();
