@@ -9,7 +9,8 @@ $(document).ready(function() {
  * Function that is called when the document is ready.
  */
 function initializePage() {
-	$('#addsource').click(addSource);
+    $('#addsource').click(chooseSource);
+    $('#submittedusername').click(addSource);
 
 	// $('#colorBtn').click(randomizeColors);
 }
@@ -17,25 +18,37 @@ function initializePage() {
 /*
  * Make an AJAX call to retrieve project details and add it in
  */
-function addSource(e) {
+function chooseSource(e) {
 	// Prevent following the link
-	e.preventDefault();
-
-	var form = document.getElementById("myForm");
-    var input = document.createElement("input");
-    input.type = "text";
-    var br = document.createElement("br");
-    form.appendChild(input);
-    form.appendChild(br);
-
-    var projectHTML = '<input>Enter Username</input>'
-                        '<select>' +
-                        '<option value="Spotify">Spotify</option>' +
-                        '</select>';
-    $('.sourceops').html(addProject(projectHTML));
+    e.preventDefault();
+    
+    $('.sourceops').show();
+    //add submitting html
+    /*var projectHTML =   '<form>' +
+                            '<select>' +
+                                '<option value="spotify">Spotify</option>' +
+                                '<option value="apple music">Apple Music</option>' +
+                            '</select>' +
+                            'Enter username: <input type="text" id="Enter username"><br>' +
+                            '<input type="submit" id="submittedusername"><br>' +
+                        '</form>';
+    console.log(projectHTML);
+    //$('.sourceops').html(projectHTML);*/
 	//added get statement
-	//$.get("/project/"+idNumber, callback);
+	//$.get("/project/"+idNumber, callback)
+}
 
+function addSource(e) {
+    e.preventDefault();
+
+    //accept user inout
+    var username = document.getElementById("Enter username").value;
+    console.log(username);
+
+    $('.sourceops').hide();
+
+    $('.mediums').show();
+    //TODO update data.json
 }
 
 function callback(result) {

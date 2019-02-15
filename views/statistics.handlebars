@@ -17,28 +17,14 @@
 			<h1>Statistics</h1>
 		</div>	
 		<h3>Statistics</h3>
-		<ul class="playlists">
-			<ul>
-				<li><a href="#playlistops">Playlist 1</a></li>
-				<li><a href="#playlistops">Playlist 2</a></li>
-				<li><a href="#playlistops">Playlist 3</a></li>
-			</ul>
-			<ul>
-				<li><a href="#playlistops">Playlist 4</a></li>
-				<li><a href="#playlistops">Playlist 5</a></li>
-				<li><a href="#playlistops">Playlist 6</a></li>
-			</ul>	
+		<ul class="stats">
+			{{#with statistics}}
+				<li>Listening Time: {{listeningTime}} hours</li><br>
+				<li>Most popular Genre: {{mostcommongenre}}</li><br>
+				<li>Most common Decade: {{decade}}</li><br>
+			{{/with}}	
 		</ul>
-		<!-- Favorites Options -->
-		<div id="playlistops">
-				<ul>
-					<li><a>Open from</a></li>
-					<li><a>Share to</a></li>
-					<li><a>Like</a></li>
-					<li><a>Similar Lists</a></li>
-				</ul>
-		</div>
-		<hr>
+		
 		<!-- Navbar Section -->
 		<ul class="navbar">
 			<li><a href="/">Home</a></li>

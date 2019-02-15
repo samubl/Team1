@@ -3,3 +3,12 @@
     text-align: center;
     justify-content: center;
 }
+
+.friendslist {
+    height: 60%;
+
+}
+
+.friendslist img {
+    height: 15%;
+}

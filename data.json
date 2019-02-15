@@ -28,21 +28,37 @@
             }
         ],
         "lastlistened": {
-            "song": "Gangster's Paradise",
-            "artist": "Coolio",
+            "song": "Undone - The Sweater Song",
+            "artist": "Weezer",
             "source": "Spotify",
-            "time": "12:30 PM",
-            "songlink": "https://open.spotify.com/track/7lQWRAjyhTpCWFC0jmclT4?si=phLulMdETYy8r-y0dNVXkA",
-            "artistlink": "https://open.spotify.com/artist/3y24n3XhZ96wgwRXjvS17T?si=hU8dXl4DQ7i67yi2emYPkA",
-            "sourcelink": "https://www.spotify.com/us/"
-        }
+            "time": "11:26 PM",
+            "songlink": "https://open.spotify.com/album/1xpGyKyV26uPstk1Elgp9Q",
+            "artistlink": "https://open.spotify.com/artist/3jOstUTkEu2JkjvRdBA5Gu",
+            "sourcelink": "https://open.spotify.com/user/"
+        },
+        "listeningTime": 52.2,
+        "mostcommongenre": "Hip-Hop",
+        "decade": "2000's"
     },
-    "friends": [],
+    "friends": [
+        {
+            "username": "Junqi Hu",
+            "picture": "http://lorempixel.com/200/200/people"
+        },
+        {
+            "username": "Samuel Blake",
+            "picture": "http://lorempixel.com/200/200/people"
+        },
+        {
+            "username": "Xuyuan Duan",
+            "picture": "http://lorempixel.com/200/200/people"
+        }
+    ],
     "sources": [
         {
             "medium": "Spotify",
             "connected": true,
-            "link": "https://www.spotify.com/us/",
+            "link": "https://open.spotify.com/user/blaksamu",
             "information": {
                 "username": "blaksamu"
             }

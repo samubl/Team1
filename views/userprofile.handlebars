@@ -58,13 +58,23 @@
 					<li><h7 class="linked">Linked Accounts: </h7></li>
 					{{#each sources}}
 						{{#if connected}}
-							<li><a href={{link}}>{{medium}}</a></li>
+							<li style="display: none" class="mediums"><a href={{link}}>{{medium}}</a></li>
 						{{/if}}
 					{{/each}}
+					<li><button type="button" id="addsource">Add Source</button></li>
 				</ul></li>
 			</ul>
-			<button type="button" id="addsource">Add Source</button></li>
-			<div class="sourceops"></div>
+			<!-- Where user will enter their source information -->
+			<div class="sourceops">
+				<form>
+					<select>
+						<option value="spotify">Spotify</option>
+						<option value="apple music">Apple Music</option>
+					</select>
+					Enter username: <input type="text" id="Enter username"><br>
+					<input type="submit" id="submittedusername"><br>
+                </form>
+			</div>
 		</div>
 		<!-- Navbar Section -->
 		<ul class="navbar">

@@ -16,11 +16,13 @@
 		<h1 id="friends">Friends</h1>	
 		<hr>
 		<!-- Friends List -->
+		<div class="friendslist">
 		{{#each friends}}
 			<img src="{{picture}}" class="img-responsive img-rounded">
-			<a href="#"><h3>{{username}}</h3></a>
+			<h3>{{username}}</h3>
 			<hr>
 		{{/each}}
+		</div>
 		<!-- Navbar section -->
 		<ul class="navbar">
 			<li><a href="/{{username}}/index">Home</a></li>
