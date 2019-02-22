@@ -7,11 +7,16 @@
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="/css/login.css" rel="stylesheet">
+    <script>
+        function login(){
+
+        }
+    </script>
 </head>
 <body>
 	<div class="container">
 		<h1 class="title">CISUM</h1>
-		<center>
+		<div style="text-align: center;">
 			<div class="login-table">
 			<div class="form-group">
 				<label for="name">Username:</label>
@@ -27,16 +32,24 @@
 				<input type="submit" value="Login">
 			</form>
 		</div>
-		</center>
+		</div>
+        <div style="text-align: center; padding: 20px;">
+            <div id="FacebookLogin">
+                <a href="/{{username}}">
+                <p class="facebookLogin" >
+                    <fb:login-button scope="public_profile,email"
+                                     onlogin="checkLoginState();">
+                    </fb:login-button>
+                </p>
+                </a>
+            </div>
+        </div>
 	</div>
 	<script src="/js/jquery-1.11.0.js"></script>	
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/login.js"></script>
-	<script>
-		function login(){
-
-		}
-	</script>
+    {{> facebook}}
+    <script src="/js/facebook.js"></script>
 </body>
 </html>
