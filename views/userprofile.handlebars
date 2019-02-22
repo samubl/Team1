@@ -56,28 +56,20 @@
 				<!-- Linked Music Accounts, Add Button -->
 				<li><ul>
 					<li><h7 class="linked">Linked Accounts: </h7></li>
-					{{#each sources}}
-						{{#if connected}}
-							<li class="mediums"><a href={{link}}>{{medium}}</a></li>
-						{{/if}}
-					{{/each}}
 					<li><button type="button" id="addsource">Add Source</button></li>
 				</ul></li>
 			</ul>
 			<!-- Where user will enter their source information -->
 			<div class="sourceops">
 				<form>
-					<select>
-						<option value="spotify">Spotify</option>
-						<option value="apple music">Apple Music</option>
-					</select>
-					Enter username: <input type="text" id="Enter username"><br>
-					<input type="submit" id="submittedusername"><br>
+					<!-- Enter username: <input type="text" id="Enter username"><br>
+					<input type="submit" id="submittedusername"><br> -->
+        			<a href="{{username}}/connect" class="btn btn-primary" id="ConnectSpotify">Connect to Spotify</a>
                 </form>
 			</div>
 		</div>
 		<div class="logout">
-				<h3><a href='/'>Log out</a></h3>
+			<h3><a href='/'>Log out</a></h3>
 		</div>
 		<!-- Navbar Section -->
 		<ul class="navbar">
@@ -96,41 +88,70 @@
 		function goBack(){
 			window.history.back();
 		}
+	</script>
+	<script>
+		(function() {
 
-		// Call this function when the page loads (the "ready" event)
-		$(document).ready(function() {
-			initializePage();
-		})
-
-		/*
-		* Function that is called when the document is ready.
-		*/
-		function initializePage() {
-			$('#submittedusername').on("click", addSource);
-			// $('#colorBtn').click(randomizeColors);
-		}
-
-		function addSource(e) {
-			e.preventDefault();
-
-			//accept user input
-			var username = document.getElementById("Enter username").value;
-			console.log(username);
-
-			var data = $.getJSON('../data.json', function(json) {
-				console.log(data);
-			});
-
-			if (data.sources.connected == false) {
-				data.sources.connected = true;
-				data.sources.link = "https://open.spotify.com/user/" + username;
+			/**
+			* Obtains parameters from the hash of the URL
+			* @return Object
+			*/
+			function getHashParams() {
+			var hashParams = {};
+			var e, r = /([^&;=]+)=?([^&;]*)/g,
+				q = window.location.hash.substring(1);
+			while ( e = r.exec(q)) {
+				hashParams[e[1]] = decodeURIComponent(e[2]);
+			}
+			return hashParams;
 			}
 
-			$('.linked').show();
-			$('.sourceops').hide();
+			var params = getHashParams();
 
-			//TODO update data.json
-		}
+			var access_token = params.access_token,
+								refresh_token = params.refresh_token,
+								error = params.error;
+
+			console.log(access_token);
+			console.log(refresh_token);
+			if (error) {
+				alert('There was an error during the authentication');
+			} 
+			else {
+				//$('#submittedusername').on("click", addSource);
+				// $('#colorBtn').click(randomizeColors);
+				if (access_token) {
+					// render oauth info
+					//oauthPlaceholder.innerHTML = oauthTemplate({
+					//access_token: access_token,
+					//refresh_token: refresh_token
+					//});
+
+					$.ajax({
+						url: 'https://api.spotify.com/v1/me',
+						headers: {
+						'Authorization': 'Bearer ' + access_token
+						},
+						success: function(response) {
+							console.log(response);
+						$('.backandname').innerHTML = '<button type="button" onclick="goBack()" id="back">Back</button><h1>{{id}}</h1>';
+						$("#ConnectSpotify").hide();
+						//$('#login').hide();
+						//$('#loggedin').show();
+						}
+					});
+				} 
+				else {
+					// render initial screen
+					//$('#login').show();
+					//$('#loggedin').hide();
+					console.log("No access token");
+					$(".linked").hide();
+					$("#addsource").hide();
+					$("#ConnectSpotify").show();
+				}
+			}
+		})();
 	</script>
 </body>
 </html>

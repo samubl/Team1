@@ -12,10 +12,13 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
     "express": "3.x",
     "express3-handlebars": "*",
     "mongodb": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "request": "^2.88.0"
   },
   "engines": {
     "node": "8.9.x"
