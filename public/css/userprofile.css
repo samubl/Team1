@@ -108,11 +108,6 @@
 }
 
 .sourceops {
-    display: none;
     text-align: right;
     font-size: 14px;
-}
-
-.sourceops select {
-    padding-bottom: 5px;
 }

@@ -58,7 +58,7 @@
 					<li><h7 class="linked">Linked Accounts: </h7></li>
 					{{#each sources}}
 						{{#if connected}}
-							<li style="display: none" class="mediums"><a href={{link}}>{{medium}}</a></li>
+							<li class="mediums"><a href={{link}}>{{medium}}</a></li>
 						{{/if}}
 					{{/each}}
 					<li><button type="button" id="addsource">Add Source</button></li>
@@ -88,10 +88,44 @@
 	<script src="/js/jquery-1.11.0.js"></script>	
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/userprofilehelper.js"></script>
 	<script>
 		function goBack(){
 			window.history.back();
+		}
+
+		// Call this function when the page loads (the "ready" event)
+		$(document).ready(function() {
+			initializePage();
+		})
+
+		/*
+		* Function that is called when the document is ready.
+		*/
+		function initializePage() {
+			$('#submittedusername').on("click", addSource);
+			// $('#colorBtn').click(randomizeColors);
+		}
+
+		function addSource(e) {
+			e.preventDefault();
+
+			//accept user input
+			var username = document.getElementById("Enter username").value;
+			console.log(username);
+
+			var data = $.getJSON('../data.json', function(json) {
+				console.log(data);
+			});
+
+			if (data.sources.connected == false) {
+				data.sources.connected = true;
+				data.sources.link = "https://open.spotify.com/user/" + username;
+			}
+
+			$('.linked').show();
+			$('.sourceops').hide();
+
+			//TODO update data.json
 		}
 	</script>
 </body>

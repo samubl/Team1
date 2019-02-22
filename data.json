@@ -57,8 +57,8 @@
     "sources": [
         {
             "medium": "Spotify",
-            "connected": true,
-            "link": "https://open.spotify.com/user/blaksamu",
+            "connected": false,
+            "link": "https://open.spotify.com/user/",
             "information": {
                 "username": "blaksamu"
             }
