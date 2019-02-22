@@ -19,7 +19,7 @@ img{
 
 .row{
     position: relative;
-    overflow: hidden;
+    overflow:hidden;
     padding: 10px;
     margin: 5px;
     width: 100%;

@@ -116,3 +116,14 @@
 .sourceops select {
     padding-bottom: 5px;
 }
+
+.logout{
+    margin-right:5%;
+    width:30%;
+    background-color:#008000;
+    float:right;
+    text-align:center;
+}
+.logout h3 a{
+    color:#000000;
+}
