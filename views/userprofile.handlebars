@@ -26,8 +26,8 @@
 			</div>
 			<div class="sub">
 				<!-- Links to Stats and Favorites user pages. Need to add link to Stats page and fill those pages -->
-				<h3><a href="/{{username}}/statistics">Statistics </a><span class="glyphicon glyphicon-stats"></span></h3><hr>
-				<h3><a href="/{{username}}/favorites">Favorites</a></h3>
+				<h3><a href="/statistics">Statistics </a><span class="glyphicon glyphicon-stats"></span></h3><hr>
+				<h3><a href="/favorites">Favorites</a></h3>
 			</div>
 		</div>
 		<!-- At a Glance Table -->
@@ -45,26 +45,26 @@
 				</ul></li>
 				<!-- Last Listened to Song and from where -->
 				<li><ul class="lastlistened">
-					{{#with statistics}}
-						{{#with lastlistened}}
-							<li>Last Listened to:</li>
-							<li><a href="{{songlink}}">{{song}}</a> by <a href="{{artistlink}}">{{artist}}</a></li>
-							<li>From <a href="{{sourcelink}}">{{source}}</a> at {{time}}</li>
-						{{/with}}
-					{{/with}}
+					<li>Last Listened to:</li>
+					<div id="lastlistenedsong">
+						<li><a href="{{songlink}}" id="lastsong">{{song}}</a> by <a href="{{artistlink}}" id="lastartist">{{artist}}</a></li>
+						<li>From <a href="{{sourcelink}}" id="lastsource">{{source}}</a> at <p id="time">{{time}}</p></li>
+					</div>
 				</ul></li>
 				<!-- Linked Music Accounts, Add Button -->
-				<li><ul>
-					<li><h7 class="linked">Linked Accounts: </h7></li>
-					<li><button type="button" id="addsource">Add Source</button></li>
-				</ul></li>
+				<div id="linkedaccounts" style="display: none">
+					<li><ul>
+						<li><h7 class="linked">Linked Accounts: </h7></li>
+						<li><a href="">Spotify</a></li>
+					</ul></li>
+				</div>
 			</ul>
 			<!-- Where user will enter their source information -->
 			<div class="sourceops">
 				<form>
 					<!-- Enter username: <input type="text" id="Enter username"><br>
 					<input type="submit" id="submittedusername"><br> -->
-        			<a href="{{username}}/connect" class="btn btn-primary" id="ConnectSpotify">Connect to Spotify</a>
+        			<a href="/connect" class="btn btn-primary" id="ConnectSpotify">Connect Spotify</a>
                 </form>
 			</div>
 		</div>
@@ -73,10 +73,10 @@
 		</div>
 		<!-- Navbar Section -->
 		<ul class="navbar">
-			<li><a href="/{{username}}" class="active">Account</a></li>
-			<li><a href='/{{username}}/Friends'>Friends</a></li>
-			<li><a href="/{{username}}/Statistics">Statistics</a></li>
-			<li><a href='/{{username}}/Favorites'>Favorites</a></li>
+			<li><a href="/userprofile" class="active">Account</a></li>
+			<li><a href='/Friends'>Friends</a></li>
+			<li><a href="/Statistics">Statistics</a></li>
+			<li><a href='/Favorites'>Favorites</a></li>
 		</ul>
 	</div>
 
@@ -127,6 +127,7 @@
 					//refresh_token: refresh_token
 					//});
 
+					//Calls Spotify API to get current users profile
 					$.ajax({
 						url: 'https://api.spotify.com/v1/me',
 						headers: {
@@ -134,20 +135,39 @@
 						},
 						success: function(response) {
 							console.log(response);
-						$('.backandname').innerHTML = '<button type="button" onclick="goBack()" id="back">Back</button><h1>{{id}}</h1>';
-						$("#ConnectSpotify").hide();
-						//$('#login').hide();
-						//$('#loggedin').show();
+							//update the username, picture, and linked account
+							$('.backandname h1').text(response.id);
+							$('.pic-container a img').attr("src", response.images[0].url);
+							$("#linkedaccounts li a").attr("href", response.external_urls.spotify);
+							$("#linkedaccounts").show();
+							$("#ConnectSpotify").hide();
 						}
 					});
+					//Calls Spotify API to get current users recently listened to track
+					$.ajax({
+						url: 'https://api.spotify.com/v1/me/player/recently-played?limit=1',
+						headers: {
+						'Authorization': 'Bearer ' + access_token
+						},
+						success: function(response) {
+							console.log(response);
+							$("#lastsong").attr("href", response.items[0].track.external_urls.spotify);
+							$("#lastsong").text(response.items[0].track.name);
+							$("lastartist").attr("href", response.items[0].track.artists[0].external_urls.spotify);
+							$("lastartist").text(response.items[0].track.artists[0].name);
+							$("#lastsource").attr("href", "https://www.spotify.com/us/");
+							$("#lastsource").text("Spotify");
+							$("#time").text(response.items[0].played_at);
+							$("#lastlistenedsong").show();
+						}
+					});
+
 				} 
 				else {
 					// render initial screen
-					//$('#login').show();
-					//$('#loggedin').hide();
 					console.log("No access token");
-					$(".linked").hide();
-					$("#addsource").hide();
+					$("#linkedaccounts").hide();
+					$("#lastlistenedsong").hide();
 					$("#ConnectSpotify").show();
 				}
 			}

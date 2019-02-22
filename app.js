@@ -16,15 +16,13 @@ var client_id = '4293c4dc48304434aba4777d650d0c6d'; // Your client id
 var client_secret = '91ec585bbb66403f8abbd520784c6d4d'; // Your secret
 var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
 
+//route javascript files 
 var index = require('./routes/index');
 var userprofile = require('./routes/userprofile');
 var favorites = require("./routes/favorites")
 var statistics = require("./routes/statistics")
 var friends = require('./routes/friends');
-var discover = require('./routes/discover');
 var login = require('./routes/login');
-// Example route
-// var user = require('./routes/user');
 
 /**
  * Generates a random string containing numbers and letters
@@ -67,16 +65,17 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/:username/index', index.view);
-app.get('/:username', userprofile.view);
+//transfer pages across app
+app.get('/', login.view);
+app.get('/userprofile', userprofile.view);
 
-app.get('/:username/connect', function(req, res) {
+app.get('/connect', function(req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email';
+  var scope = 'user-read-private user-read-email user-read-recently-played';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -87,6 +86,7 @@ app.get('/:username/connect', function(req, res) {
     }));
 });
 
+//handle Spotify's callback
 app.get('/callback', function(req, res) {
 
   // your application requests refresh and access tokens
@@ -135,7 +135,7 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/:username' +
+        res.redirect('/userprofile#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
@@ -152,11 +152,9 @@ app.get('/callback', function(req, res) {
   }
 });
 
-app.get('/:username/friends', friends.view);
-app.get('/:username/discover', discover.view);
-app.get('/:username/favorites', favorites.view);
-app.get('/:username/statistics', statistics.view);
-app.get('/',login.view);
+app.get('/friends', friends.view);
+app.get('/favorites', favorites.view);
+app.get('/statistics', statistics.view);
 
 // Example route
 // app.get('/users', user.list);
