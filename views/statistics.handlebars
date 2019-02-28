@@ -17,6 +17,7 @@
 			<h1>Statistics</h1>
 		</div>	
 		<h3>Statistics</h3>
+		<h4 id="statsmsg" style="display: none">No Stats yet. :( Try Connecting with Spotify first!</h4>
 		<ul class="stats">
 			{{#with statistics}}
 				<li>Listening Time: {{listeningTime}} hours</li><br>
@@ -38,11 +39,24 @@
 	<script src="/js/jquery-1.11.0.js"></script>	
 	<script src="/js/bootstrap.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/statistics.js"></script>
 	<script>
 		function goBack(){
 			window.history.back();
 		}
+	</script>
+	<script>
+		(function () {
+			//can use the same access_token!
+			console.log(sessionStorage.getItem("access_token"));
+			if (!(!!sessionStorage.getItem("access_token"))) {
+				console.log("Ready for API calls!");
+			}
+			else {
+				//no data yet
+				$('.stats').hide();
+				$('#statsmsg').show();
+			}
+		})();
 	</script>
 </body>
 </html>

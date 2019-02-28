@@ -7,6 +7,6 @@ var data = require('../data.json');
 
 exports.view = function(req, res){
   //console.log(data);
-  data.username = "No User Yet";
+  data.username = "Default user";
   res.render('userprofile',data);
 };
