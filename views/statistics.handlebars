@@ -47,14 +47,14 @@
 	<script>
 		(function () {
 			//can use the same access_token!
-			console.log(sessionStorage.getItem("access_token"));
-			if (!(!!sessionStorage.getItem("access_token"))) {
-				console.log("Ready for API calls!");
-			}
-			else {
+			if (localStorage.getItem("access_token") == 'undefined') {
 				//no data yet
 				$('.stats').hide();
 				$('#statsmsg').show();
+			}
+			else {
+				console.log("Ready for API calls!");
+				console.log(localStorage.getItem("access_token"));
 			}
 		})();
 	</script>
