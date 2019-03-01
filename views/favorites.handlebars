@@ -14,7 +14,7 @@
 			<center>
 				<h2>Favorites</h2>
 			</center>
-			<p><b>Artists from Spotify:</b></p>
+			<p><b>From Spotify:</b></p>
 		</div>
 		<h1 id="favsmsg" style="display: none">No Favorites Yet :( Try connecting a Spotify account!</h1>
 		<div class="playlists">
@@ -108,6 +108,7 @@
 								$('#'+(i+1) + ' a').attr("href", curr_src);
 								$('#'+(i+1) + ' a p').text(curr_artist);
 							}
+							//TODO: change if it's playlists or artists from spotify
 							$('.playlists').show();
 							$('#favsmsg').hide();
 						}
@@ -120,6 +121,7 @@
 							'Authorization': 'Bearer ' + localStorage.getItem("access_token")
 						},
 						success: function(response) {
+							//TODO: Provide scrolling for all playlists
 							console.log(response);
 							//update the artist image, hyper link, and names
 							var i;

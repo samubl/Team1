@@ -9,6 +9,7 @@
 	<!-- bootstrap container for page content -->
 	<div class="container">
 		<!-- Back Button, Username -->
+		<!-- TODO: Lawrence: better default username, default image -->
 		<div class="backandname">
 			<button type="button" onclick="goBack()" id="back">Back</button> 
 			<h1>{{username}}</h1>
@@ -85,6 +86,9 @@
 	</script>
 	<script>
 		(function() {
+
+			//TODO Samuel: Fix navbar to user profile (include access_token if it is available - check local storage)
+			//TODO Samuel: Favorite (long term) Song instead of genres. Stretch goal: Favorites short-term and medium-term song
 
 			/**
 			* Obtains parameters from the hash of the URL
