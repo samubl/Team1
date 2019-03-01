@@ -1,13 +1,9 @@
 <html>
 <head>
-	<title>J. Smith Homepage</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>User Profile</title>
+	{{> header}}
 	<!-- Linked css files -->
-	<link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="/css/userprofile.css" rel="stylesheet">
-	<link href="/css/constants.css" rel="stylesheet">
 </head>
 <body>
 	<!-- bootstrap container for page content -->
@@ -26,8 +22,8 @@
 			</div>
 			<div class="sub">
 				<!-- Links to Stats and Favorites user pages. Need to add link to Stats page and fill those pages -->
-				<h3><a href="/statistics#" id="statslink">Statistics </a><span class="glyphicon glyphicon-stats"></span></h3><hr>
-				<h3><a href="/favorites#" id="favslink">Favorites</a></h3>
+				<h3><a href="/Statistics" id="statslink">Statistics </a><span class="glyphicon glyphicon-stats"></span></h3><hr>
+				<h3><a href="/Favorites/page_A" id="favslink">Favorites</a></h3>
 			</div>
 		</div>
 		<!-- At a Glance Table -->
@@ -76,14 +72,12 @@
 			<li><a href="/userprofile" class="active">Account</a></li>
 			<li><a href='/Friends'>Friends</a></li>
 			<li><a href="/Statistics">Statistics</a></li>
-			<li><a href='/Favorites'>Favorites</a></li>
+			<li><a href='/Favorites/page_A'>Favorites</a></li>
 		</ul>
 	</div>
 
 	<!-- connected javascript files -->
-	<script src="/js/jquery-1.11.0.js"></script>	
-	<script src="/js/bootstrap.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
+	{{> footer}}
 	<script>
 		function goBack(){
 			window.history.back();

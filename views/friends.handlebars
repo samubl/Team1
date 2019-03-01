@@ -1,13 +1,9 @@
 <html>
 <head>
-	<title>J. Smith Friends</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Friends</title>
+	{{> header}}
 	<!-- Linked css files -->
-	<link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="/css/friends.css" rel="stylesheet">
-	<link href="/css/constants.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
@@ -28,15 +24,13 @@
 			<li><a href="/userprofile">Account</a></li>
 			<li><a href='/Friends' class="active">Friends</a></li>
 			<li><a href="/Statistics">Statistics</a></li>
-			<li><a href='/Favorites'>Favorites</a></li>
+			<li><a href='/Favorites/page_A'>Favorites</a></li>
 		</ul>
-	</div>
+		</div>
 	</div>
 
+	{{> footer}}
 	<!-- connected javascript files -->
-	<script src="/js/jquery-1.11.0.js"></script>	
-	<script src="/js/bootstrap.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/friends.js"></script>
 	<script>
 		function goBack(){

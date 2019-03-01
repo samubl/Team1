@@ -5,14 +5,14 @@ h2{
     color:#3CB371;
 }
 img{
-    max-width:195px;
-    max-height:195px;
+    max-width:200px;
+    max-height:200px;
 }
 .playlists {
     display: inline-table;
     padding: 2px 2px;
     border: 1px solid rgb(10, 10, 10);
-    border-width: 2px;
+    border-width: 1px;
     list-style:none;
     text-align:center;
 }
@@ -20,8 +20,8 @@ img{
 .row{
     position: relative;
     overflow:hidden;
-    padding: 10px;
-    margin: 5px;
+    padding: 1px;
+    margin: 3px;
     width: 100%;
     height:29%
 }
@@ -47,7 +47,7 @@ img{
     display: inline;
     border-bottom: 1px solid rgb(10, 10, 10);
     border-width: 2px;
-    border-bottom: 20px;
+    border-bottom: 10px;
 }
 
 #playlistops {

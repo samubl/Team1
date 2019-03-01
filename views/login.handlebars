@@ -1,11 +1,8 @@
 <html>
 <head>
 	<title>Login</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{{> header}}
 	<!-- Linked css files -->
-	<link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="/css/login.css" rel="stylesheet">
     <script>
         function login(){
@@ -15,7 +12,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="title">CISUM</h1>
+		<h1 class="title">TEAM 1 Music</h1>
 		<div style="text-align: center;">
 			<div class="login-table">
 			<div class="form-group">
@@ -28,9 +25,15 @@
 				<br>
 				<input type="password" class="form-control" id="password" placeholder name="pswd">
 			</div>
-			<form action="/userprofile">
-				<input type="submit" value="Login">
-			</form>
+			{{#if favoritesAlt}}
+				<form action="/userprofile" onsubmit="playlistFavs()">
+					<input type="submit" value="Login">
+				</form>
+			{{else}}
+				<form action="/userprofile" onsubmit="artistsFavs()">
+					<input type="submit" value="Login">
+				</form>
+			{{/if}}
 		</div>
 		</div>
         <div style="text-align: center; padding: 20px;">
@@ -45,10 +48,23 @@
             </div>
         </div>
 	</div>
-	<script src="/js/jquery-1.11.0.js"></script>	
-	<script src="/js/bootstrap.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
+	{{> footer}}
     {{> facebook}}
     <script src="/js/facebook.js"></script>
+	<script>
+		/*
+		 * Make Favorites page contain Playlists 
+		 */
+		function playlistFavs() {
+			localStorage.setItem("favorites", "playlists");
+		}
+
+		/*
+		 * Make Favorites page contain Playlists 
+		 */
+		function artistsFavs() {
+			localStorage.setItem("favorites", "artists");
+		}
+	</script>
 </body>
 </html>

@@ -14,13 +14,14 @@ var cookieParser = require('cookie-parser');
 
 var client_id = '4293c4dc48304434aba4777d650d0c6d'; // Your client id
 var client_secret = '91ec585bbb66403f8abbd520784c6d4d'; // Your secret
-//var redirect_uri = 'https://a7-team1music.herokuapp.com/callback'; // Your redirect uri
-var redirect_uri = 'http://localhost:3000/callback';
+var redirect_uri = 'https://a8-team1music.herokuapp.com/callback'; // Your redirect uri
+//var redirect_uri = 'http://localhost:3000/callback';
 
 //route javascript files 
 var index = require('./routes/index');
 var userprofile = require('./routes/userprofile');
 var favorites = require("./routes/favorites")
+var favoritesTemp = require("./routes/favoritesTemp");
 var statistics = require("./routes/statistics")
 var friends = require('./routes/friends');
 var login = require('./routes/login');
@@ -68,15 +69,22 @@ if ('development' == app.get('env')) {
 
 //transfer pages across app
 app.get('/', login.view);
+app.get('/alt', login.viewAlt);
 app.get('/userprofile', userprofile.view);
+app.get('/Friends', friends.view);
+app.get('/Favorites/page_A', favorites.view);
+app.get('/Favorites/page_B', favoritesTemp.view);
+app.get('/Statistics', statistics.view);
 
+//some routes to handle connecting to spotify
 app.get('/connect', function(req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email user-read-recently-played';
+  var scope = 'user-read-private user-read-email user-read-recently-played user-top-read playlist-read-private';
+  //NOTE: all of the above scopes are read-only and are thus pretty safe
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -152,13 +160,6 @@ app.get('/callback', function(req, res) {
     });
   }
 });
-
-app.get('/friends', friends.view);
-app.get('/favorites', favorites.view);
-app.get('/statistics', statistics.view);
-
-// Example route
-// app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

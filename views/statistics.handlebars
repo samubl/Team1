@@ -1,12 +1,9 @@
 <html>
 <head>
-	<title>J. Smith Statistics</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Statistics</title>
+	{{> header}}
 	<!-- Linked css files -->
-	<link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="/css/constants.css" rel="stylesheet">
+	
 </head>
 <body>
 	<!-- bootstrap container for page content -->
@@ -31,14 +28,12 @@
 			<li><a href="/userprofile">Account</a></li>
 			<li><a href='/Friends'>Friends</a></li>
 			<li><a href="/Statistics" class="active">Statistics</a></li>
-			<li><a href='/Favorites'>Favorites</a></li>
+			<li><a href='/Favorites/page_A'>Favorites</a></li>
 		</ul>
 	</div>
 
 	<!-- connected javascript files -->
-	<script src="/js/jquery-1.11.0.js"></script>	
-	<script src="/js/bootstrap.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
+	{{> footer}}
 	<script>
 		function goBack(){
 			window.history.back();
@@ -55,6 +50,23 @@
 			else {
 				console.log("Ready for API calls!");
 				console.log(localStorage.getItem("access_token"));
+				$.ajax({
+					url: 'https://api.spotify.com/v1/me',
+					headers: {
+					'Authorization': 'Bearer ' + access_token
+					},
+					success: function(response) {
+						console.log(response);
+						//update the username, picture, linked account, and stats and favorites links
+						$('.backandname h1').text(response.id);
+						$('.pic-container a img').attr("src", response.images[0].url);
+						$("#linkedaccounts li a").attr("href", response.external_urls.spotify);
+						//$('#statslink').attr("href", "/statistics#" + access_token);
+						//$('#favslink').attr("href", "/favorites#" + access_token);
+						$("#linkedaccounts").show();
+						$("#ConnectSpotify").hide();
+					}
+				});
 			}
 		})();
 	</script>

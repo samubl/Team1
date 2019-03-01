@@ -14,7 +14,7 @@
 			<center>
 				<h2>Favorites</h2>
 			</center>
-			<p><b>Artists from Spotify:</b></p>
+			<p><b>Playlists from Spotify:</b></p>
 		</div>
 		<h1 id="favsmsg" style="display: none">No Favorites Yet :( Try connecting a Spotify account!</h1>
 		<div class="playlists">
@@ -66,7 +66,7 @@
 			<li><a href="/userprofile">Account</a></li>
 			<li><a href='/Friends'>Friends</a></li>
 			<li><a href="/Statistics">Statistics</a></li>
-			<li><a href='/Favorites/page_A' class="active">Favorites</a></li>
+			<li><a href='/Favorites/page_B' class="active">Favorites</a></li>
 		</ul>
 	</div>
 
@@ -84,11 +84,12 @@
 				//no data yet
 				$('.playlists').hide();
 				$('#favsmsg').show();
-				$('.navbar').show();
+                $('.navbar').show();
 							
 			} else {
 			 	console.log(localStorage.getItem("access_token"));
 				console.log("Ready for API calls for " + localStorage.getItem("favorites"));
+                localStorage.setItem("favorites", 'playlists');
 				if (localStorage.getItem("favorites") == 'artists') {
 					//call get top artists api
 					$.ajax({

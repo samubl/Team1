@@ -2,6 +2,7 @@
     "username": "John Smith",
     "password": "default",
     "picture": "http://lorempixel.com/200/200/people",
+    "favoritesAlt": false,
     "statistics": {
         "genres": [
             {
