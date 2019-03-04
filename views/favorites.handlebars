@@ -14,53 +14,17 @@
 			<center>
 				<h2>Favorites</h2>
 			</center>
-			<p><b>From Spotify:</b></p>
+			<p><b id="fromsource">From Spotify:</b></p>
 		</div>
-		<h1 id="favsmsg" style="display: none">No Favorites Yet :( Try connecting a Spotify account!</h1>
-		<div class="playlists">
-			<div class="row">
-				<div class="Playlist" id="1">
-					<div class="thumbnail">
-						<img src="https://pl.scdn.co/images/pl/default/e3319943c4af9e1e3b0ec9ce4ef4457a1f788c23">
-						<a href="https://open.spotify.com/playlist/3FJd21jWvCjGCLx7eKrext"><p>Video Game Masterpiece</p></a>
-					</div>
-				</div>
-				<div class="Playlist" id="2">
-					<div class="thumbnail">
-						<img src="https://i.scdn.co/image/2976d930b671fdf183cf2c4fe253faa2c5329599">
-						<a href="https://open.spotify.com/album/04uEX0wzsnA5UcaEtxcbal"><p>Distant Worlds</p></a>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="Playlist" id="3">
-					<div class="thumbnail">
-						<img src="https://mosaic.scdn.co/640/0cb369073704b39fdbe58d8b90adcec082fa20796072343320a01ddb0a605a687be95ae4d7b73c9c6ead2fc533a2bcf1c5295382c638cadf56fd4fcb888abe4a03e235829ef0929c0d0503fdc1a05448">
-						<a href="https://open.spotify.com/playlist/5jeAdOL4zdkn4AHgbONh21"><p>Movie Soundtrack Masterpieces</p></a>
-					</div>
-				</div>
-				<div class="Playlist" id="4">
-					<div class="thumbnail">
-						<img src="https://mosaic.scdn.co/640/0d1d7068e43d40954bb72aeb7a1b5d342bfe8b1fccb9303e9f4a987044e241f515313fcc5d06cb8cf3e018376af31779f767c87495e24a4f0ee82041fd96909a74217c7da8c15f1017ad38f978e12e5e">
-						<a href="https://open.spotify.com/playlist/2kUK4p2apZqSdEM7j4S2QK"><p>Blue Mountain State</p></a>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="Playlist" id="5">
-					<div class="thumbnail">
-						<img src="https://mosaic.scdn.co/640/1f8ad352f1889c317dbb8e76edc067adbb24388eabc77faa7c5be9f55319ddedbf94a05b6a9e6c11caa334a497de0d0c321a28f4861f79d42ce4f9e9f59cae8f5a167524527c46c14a2f5a76bbc0d305">
-						<a href="https://open.spotify.com/playlist/1ifFd7IBbM4vZKPNeQKve7"><p>Death Valley</p></a>
-					</div>
-				</div>
-				<div class="Playlist" id="6">
-					<div class="thumbnail">
-						<img src="https://mosaic.scdn.co/640/03e6e600fb3b9c4c6ef0df6b0d287d0e7d18d7992a02f49aeb969a346525a5c410bff89eaa2579db499a51b4338de0bbd9a65dc85e50f1c67bc18bbe4e8b9a2b12a8b30e135890bbf3be5979b227ed10">
-						<a href="https://open.spotify.com/playlist/2iKv43i7Ev28uetnfHX52p"><p>Barney's Get Psyched Mix</p></a>
-					</div>
-				</div>
-			</div>
+		<div class="timerangeselector">
+				<input type="radio" id="short_term" name="time_range" value="short_term">
+				<label for="short_term">Last 2 Weeks</label>
+				<input type="radio" id="medium_term" name="time_range" value="medium_term" checked>
+				<label for="medium_term">Last 6 Months</label>
+				<input type="radio" id="long_term" name="time_range" value="long_term">
+				<label for="long_term">All Time</label>
 		</div>
+		<div class="playlists"></div>
 		<!-- Navbar Section -->
 		<ul class="navbar">
 			<li><a href="/userprofile">Account</a></li>
@@ -79,67 +43,111 @@
 	</script>
 	<script>
 		(function () {
-			//can use the same access_token!
+
+			/**
+			 * Call Spotify API to get the top artists across a time range 
+			 */
+			function getTopArtists(time_range) {
+				$('#favsmsg').hide();
+				$('#fromsource').text("Top 50 Favorite Artists from Spotify");
+				$('.playlists').hide();
+				var artists_url = 'https://api.spotify.com/v1/me/top/artists?limit=50&time_range=' + time_range;
+				$.ajax({
+					url: artists_url,
+					headers: {
+						'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+					},
+					success: function(response) {
+						console.log(response);
+						//update the artist image, hyper link, and names
+						var i;
+						var favArtists = "";
+						for (i = 0; i < response.items.length; i++) { 
+							var curr_src = response.items[i].external_urls.spotify;
+							var curr_img = response.items[i].images[0].url;
+							var curr_artist = response.items[i].name;
+							if ((i % 2) == 0) {
+								favArtists += '<div class="row"></div>';
+							}
+							favArtists += '<div class="Playlist" id="' + i + '">' + '<div class="thumbnail">' +
+										'<a href="' + curr_src + '"><img src="' + curr_img + '"></a>' +
+										'<a href="' + curr_src + '"><p>' + curr_artist + '</p></a>' +
+										'</div></div>';
+						}
+						favArtists += '<div class="bigrow"></div>';
+						$('.playlists').html(favArtists);
+						$('.playlists').show();
+					}
+				});
+			}
+
+			/**
+			 * Call Spotify API to get the playlists of the user
+			 */
+			function getPlaylists() {
+				$('#favsmsg').hide();
+				$('#fromsource').text("Playlists from Spotify");
+				$('.timerangeselector').hide();
+				$('.playlists').hide();
+				//call get playlists api
+				$.ajax({
+					url: 'https://api.spotify.com/v1/me/playlists?',
+					headers: {
+						'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+					},
+					success: function(response) {
+						console.log(response);
+						//update the artist image, hyper link, and names
+						var i;
+						var playlists = "";
+						for (i = 0; i < response.items.length; i++) { 
+							var curr_src = response.items[i].external_urls.spotify;
+							var curr_img = response.items[i].images[0].url;
+							var curr_artist = response.items[i].name;
+							if ((i % 2) == 0) {
+								playlists += '<div class="row"></div>';
+							}
+							playlists += '<div class="Playlist" id="' + i + '">' + '<div class="thumbnail">' +
+										'<a href="' + curr_src + '"><img src="' + curr_img + '"></a>' +
+										'<a href="' + curr_src + '"><p>' + curr_artist + '</p></a>' +
+										'</div></div>';
+						}
+						playlists += '<div class="bigrow"></div>';
+						$('.playlists').html(playlists);
+						$('.playlists').show();
+					}
+				});
+			}
+
+			/**
+			 * Populate the Favorites page!
+			 */
 			if (localStorage.getItem("access_token") == 'undefined') {				
 				//no data yet
+				$('#fromsource').text("No Favorites Yet :( Try connecting a Spotify account!");
 				$('.playlists').hide();
-				$('#favsmsg').show();
-				$('.navbar').show();
-							
+				$('.timerangeselector').hide();
 			} else {
-			 	console.log(localStorage.getItem("access_token"));
-				console.log("Ready for API calls for " + localStorage.getItem("favorites"));
+				console.log("Ready for API calls for " + localStorage.getItem("favorites") + 
+							" using the token" + localStorage.getItem("access_token"));
+
 				if (localStorage.getItem("favorites") == 'artists') {
-					//call get top artists api
-					$.ajax({
-						url: 'https://api.spotify.com/v1/me/top/artists?limit=6',
-						headers: {
-							'Authorization': 'Bearer ' + localStorage.getItem("access_token")
-						},
-						success: function(response) {
-							console.log(response);
-							//update the artist image, hyper link, and names
-							var i;
-							for (i = 0; i < response.items.length; i++) { //request only made for 6 tracks
-								var curr_src = response.items[i].external_urls.spotify;
-								var curr_img = response.items[i].images[0].url;
-								var curr_artist = response.items[i].name;
-								$('#'+(i+1) + ' img').attr("src", curr_img);
-								$('#'+(i+1) + ' a').attr("href", curr_src);
-								$('#'+(i+1) + ' a p').text(curr_artist);
-							}
-							//TODO: change if it's playlists or artists from spotify
-							$('.playlists').show();
-							$('#favsmsg').hide();
-						}
+					//default value for time_range, used for artists
+					var time_range = "medium_term";
+					//let the user specify the time range they want their data from
+					$('input[name="time_range"]').click( function () {
+						console.log('Selected the time range: ' + $('input[name="time_range"]:checked').val());	
+						time_range = $('input[name="time_range"]:checked').val();
+						getTopArtists(time_range);
 					});
+					//call get top artists api
+					getTopArtists(time_range);
 				} else {
 					//call get playlists api
-					$.ajax({
-						url: 'https://api.spotify.com/v1/me/playlists?limit=6',
-						headers: {
-							'Authorization': 'Bearer ' + localStorage.getItem("access_token")
-						},
-						success: function(response) {
-							//TODO: Provide scrolling for all playlists
-							console.log(response);
-							//update the artist image, hyper link, and names
-							var i;
-							for (i = 0; i < 6; i++) { //request only made for 6 tracks
-								var curr_src = response.items[i].external_urls.spotify;
-								var curr_img = response.items[i].images[0].url;
-								var curr_artist = response.items[i].name;
-								$('#'+(i+1) + ' img').attr("src", curr_img);
-								$('#'+(i+1) + ' a').attr("href", curr_src);
-								$('#'+(i+1) + ' a p').text(curr_artist);
-							}
-							$('.playlists').show();
-							$('#favsmsg').hide();
-						}
-					});
-
+					getPlaylists();
 				}
 			}
+			
 		})();
 	</script>
 </body>

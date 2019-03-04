@@ -73,7 +73,7 @@
     height: 40%;
 }
 .glance ul{
-    display: inline-block;
+    float: center;
     padding: 5px;
     border-width: 2px;
     list-style: none;
@@ -88,7 +88,7 @@
     border-bottom: 1px;
 }  
 
-.genre {
+.favsong {
     display: inline;
     text-align: center;
 }
@@ -102,7 +102,7 @@
     font-size: 14px;
 }
 
-.topgenres a {
+.topsongs a {
     text-align: left;
     padding-block-end: 5px;
 }

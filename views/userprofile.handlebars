@@ -30,16 +30,16 @@
 		<!-- At a Glance Table -->
 		<div class="glance">
 			<ul>
-				<li><h3>At a Glance</h3></li>
+				<li><h3>At a Glance</h3></li><br>
 				<!-- Top 3 Genres -->
-				<li><ul class="topgenres">
-					<li>Top 3 Genres:</li>
+				<li><ul class="topsongs">
+					<li>Top 3 Favorite Songs the last 2 weeks:</li>
 					{{#with statistics}}
 						{{#each genres}}
-							<li class="genre">{{genre}}</li>
+							<a><li class="genre">{{lastsong}}</li></a>
 						{{/each}}
 					{{/with}}
-				</ul></li>
+				</ul></li><br>
 				<!-- Last Listened to Song and from where -->
 				<li><ul class="lastlistened">
 					<li>Last Listened to:</li>
@@ -87,7 +87,6 @@
 	<script>
 		(function() {
 
-			//TODO Samuel: Fix navbar to user profile (include access_token if it is available - check local storage)
 			//TODO Samuel: Favorite (long term) Song instead of genres. Stretch goal: Favorites short-term and medium-term song
 
 			/**
@@ -107,6 +106,8 @@
 			 * Calls Spotify API to get current users profile
 			 */
 			function getUserProfile(access_token) {
+				$('.backandname h1').hide();
+				$('.pic-container').hide();
 				$.ajax({
 					url: 'https://api.spotify.com/v1/me',
 					headers: {
@@ -116,10 +117,10 @@
 						console.log(response);
 						//update the username, picture, linked account, and stats and favorites links
 						$('.backandname h1').text(response.id);
+						$('.backandname h1').show();
 						$('.pic-container a img').attr("src", response.images[0].url);
+						$('.pic-container').show();
 						$("#linkedaccounts li a").attr("href", response.external_urls.spotify);
-						//$('#statslink').attr("href", "/statistics#" + access_token);
-						//$('#favslink').attr("href", "/favorites#" + access_token);
 						$("#linkedaccounts").show();
 						$("#ConnectSpotify").hide();
 					}
@@ -164,23 +165,55 @@
 				//Taking the top artists from that map based on count
 			}
 
+			/**
+			 * Calls Spotify API to get the Top 3 favorite songs of the last 2 weeks
+			 */
+			function getRecentTopSongs(access_token) {
+				$.ajax({
+					url: 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=3',
+					headers: {
+					'Authorization': 'Bearer ' + access_token
+					},
+					success: function(response) {
+						console.log(response);
+						var song1 = response.items[0].name;
+						var song1link = response.items[0].external_urls.spotify;
+						var song2 = response.items[1].name;
+						var song2link = response.items[1].external_urls.spotify;
+						var song3 = response.items[2].name;
+						var song3link = response.items[2].external_urls.spotify;
+						var favsongs = '<li>Top 3 Favorite Songs the last 2 weeks:</li>' + 
+							'<li class="favsong"><a href="' + song1link + '">' + song1 + ' </a></li><br>' +
+							'<li class="favsong"><a href="' + song2link + '">' + song2 + ' </a></li><br>' +
+							'<li class="favsong"><a href="' + song3link + '">' + song3 + ' </a></li>';
+						$(".topsongs").html(favsongs);
+					}
+				});
+			}
+
 			var params = getHashParams();
 
 			var access_token = params.access_token,
 				refresh_token = params.refresh_token,
 				error = params.error;
 
-			localStorage.setItem("access_token", access_token);
+			//only reset the local storage the first time
+			if (localStorage.getItem("access_token") === 'undefined' || localStorage.getItem("access_token") === null) {
+				localStorage.setItem("access_token", access_token);
+			}
+
+			access_token = localStorage.getItem("access_token");
 			
 			console.log(access_token);
 			console.log(refresh_token);
+			console.log(localStorage.getItem("access_token"));
 			if (error) {
 				alert('There was an error during the authentication');
 			} 
 			else {
 				//$('#submittedusername').on("click", addSource);
 				// $('#colorBtn').click(randomizeColors);
-				if (access_token) {
+				if (access_token != null && access_token != 'undefined') {
 					// render oauth info
 					//oauthPlaceholder.innerHTML = oauthTemplate({
 					//access_token: access_token,
@@ -191,10 +224,13 @@
 					getUserProfile(access_token);
 					//Calls Spotify API to get current users recently listened to track
 					getRecentlyListened(access_token);
+					//Calls Spotify API to get the top 3 songs listened to the last 2 weeks
+					getRecentTopSongs(access_token);
 				} 
 				else {
 					// render initial screen
 					console.log("No access token");
+					$('.topsongs a').hide();
 					$("#linkedaccounts").hide();
 					$("#lastlistenedsong").hide();
 					$("#ConnectSpotify").show();
