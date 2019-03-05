@@ -1,9 +1,11 @@
 <html>
 <head>
 	<title>Statistics</title>
-	{{> header}}
-	<!-- Linked css files -->
-	
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi?autoload=
+	{'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}">
+	</script>
+	{{> header}}	
 </head>
 <body>
 	<!-- bootstrap container for page content -->
@@ -13,6 +15,11 @@
 			<button type="button" onclick="goBack()" id="back">Back</button> 
 			<h1>Statistics</h1>
 		</div>	
+		<div class='piecharts'>
+			<div id="2weekspiechart"></div>
+			<div id="6monthspiechart"></div>
+			<div id="alltimepiechart"></div>
+		</div>
 		<h3>Statistics</h3>
 		<h4 id="statsmsg" style="display: none">No Stats yet. :( Try Connecting with Spotify first!</h4>
 		<ul class="stats">
@@ -32,6 +39,7 @@
 		</ul>
 	</div>
 
+
 	<!-- connected javascript files -->
 	{{> footer}}
 	<script>
@@ -39,37 +47,127 @@
 			window.history.back();
 		}
 	</script>
-	<script>
+	<script type="text/javascript">
 		(function () {
 			//TODO: Samuel: Make an API call to get some stats. Use genres?
+
+			/**
+			 * Calls Spotify API to get the Top artists and does some fanagling to determine top genres.
+			 * 
+			*/
+			function getTopGenres(time_range, genres, callback_function) {
+				var artists_url = 'https://api.spotify.com/v1/me/top/artists?limit=50&time_range=' + time_range;
+				$.ajax({
+					url: artists_url,
+					headers: {
+						'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+					},
+					success: function(response) {
+						console.log(response);
+						//get the top genres from this time range
+						var artists = response.items;
+						var i;
+						//loop through all of the artists
+						for (i = 0; i < artists.length; i++) { 
+							var curr_genres = artists[i].genres;
+							var j;
+							//console.log("Artist is " + artists[i].name);
+							//loop through each of the genres attached to this artist
+							for (j = 0; j < curr_genres.length; j++) { 
+								//check if our map has this genre already
+								if (genres.has(curr_genres[j])) {
+									//incremement this genres count
+									//console.log("Genre is " + curr_genres[j]);
+									genres.set(curr_genres[j] , (genres.get(curr_genres[j]))+1);
+								} else {
+									//add this genre to our map
+									genres.set(curr_genres[j], 1);
+									//console.log("New Genre is " + curr_genres[j]);
+								}
+							}	
+						}
+						var popGenres = [['Genre', 'Popularity']];
+						genres.forEach((value, key) => {
+  							//console.log(`Genre ${key} has popularity ${value}`);
+							if (value > 5) {
+								popGenres.push([key, value]);
+							}
+						});
+						callback_function(popGenres);
+					}
+				});
+			}
+
+			/**
+			 * Draw a piechart for the genres
+			*/
+			function drawChart(top_genres, title, piechart) {
+				var data = google.visualization.arrayToDataTable(top_genres);
+
+				// Optional; add a title and set the width and height of the chart
+				var options = {
+					'title': title,
+					'chartArea.left': 20,
+					'legend.position': 'bottom',
+					'is3D': true,
+					'background-color': 'blue',
+					'width': 400,
+				};
+
+				// Display the chart inside the <div> element with id="piechart"
+				var chart = new google.visualization.PieChart(document.getElementById(piechart));
+				chart.draw(data, options);
+			}
+
+			/**
+			 * Create Piecharts with Genres for user to view
+			 */
+			function produceStats(access_token) {
+				//short term genres
+				let topRecentGenres = new Map(); 
+				getTopGenres("short_term", topRecentGenres, function(results) {
+					console.log("Short Term Genres");
+					console.log(results);
+					// Load google charts
+					google.charts.load('current', {'packages':['corechart']});
+					google.charts.setOnLoadCallback(drawChart(results, "Top Genres over the last 2 Weeks", '2weekspiechart'));
+				});
+				//midterm genres
+				let topMediumGenres = new Map(); 
+				getTopGenres("medium_term", topMediumGenres, function(results) {
+					console.log("Medium Term Genres");
+					console.log(results);
+					// Load google charts
+					google.charts.load('current', {'packages':['corechart']});
+					google.charts.setOnLoadCallback(drawChart(results, "Top Genres over the last 6 Months",'6monthspiechart'));
+				});
+				//long term genres
+				let topAllTimeGenres = new Map(); 
+				getTopGenres("long_term", topAllTimeGenres, function(results) {
+					console.log("Long Term Genres");
+					console.log(results);
+					// Load google charts
+					google.charts.load('current', {'packages':['corechart']});
+					google.charts.setOnLoadCallback(drawChart(results, "Top Genres all Time",'alltimepiechart'));
+				});
+			}
 
 			//can use the same access_token!
 			if (localStorage.getItem("access_token") == 'undefined') {
 				//no data yet
 				$('.stats').hide();
+				$('.piecharts').hide();
 				$('#statsmsg').show();
 			}
 			else {
-				console.log("Ready for API calls!");
-				console.log(localStorage.getItem("access_token"));
-				$.ajax({
-					url: 'https://api.spotify.com/v1/me',
-					headers: {
-					'Authorization': 'Bearer ' + access_token
-					},
-					success: function(response) {
-						console.log(response);
-						//update the username, picture, linked account, and stats and favorites links
-						$('.backandname h1').text(response.id);
-						$('.pic-container a img').attr("src", response.images[0].url);
-						$("#linkedaccounts li a").attr("href", response.external_urls.spotify);
-						//$('#statslink').attr("href", "/statistics#" + access_token);
-						//$('#favslink').attr("href", "/favorites#" + access_token);
-						$("#linkedaccounts").show();
-						$("#ConnectSpotify").hide();
-					}
-				});
+				$('.stats').hide();
+				$('#statsmsg').hide();
+				$('.piecharts').hide();
+				console.log("Ready for API calls! Using access_token " + localStorage.getItem("access_token"));
+				produceStats(localStorage.getItem("access_token"));
+				$('.piecharts').show();
 			}
+
 		})();
 	</script>
 </body>

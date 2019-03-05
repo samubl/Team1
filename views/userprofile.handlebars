@@ -150,20 +150,6 @@
 					}
 				});
 			}
-			/**
-			 * Calls Spotify API to get the Top artists and does some fanagling to determine top genres
-			*/
-			function getTopGenres(access_token) {
-				//hacky way to do it
-				//get top artists
-				//for each top artist, save their genres in a map 
-				//when a genre is found that is already saved, update its count
-				//the genres with the highest counts are the top genres
-				//Will require: 
-				//API call to top artists
-				//Parsing that data to build a map of genres and counts
-				//Taking the top artists from that map based on count
-			}
 
 			/**
 			 * Calls Spotify API to get the Top 3 favorite songs of the last 2 weeks

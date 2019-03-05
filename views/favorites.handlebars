@@ -49,7 +49,7 @@
 			 */
 			function getTopArtists(time_range) {
 				$('#favsmsg').hide();
-				$('#fromsource').text("Top 50 Favorite Artists from Spotify");
+				$('#fromsource').text("Favorite Artists from Spotify");
 				$('.playlists').hide();
 				var artists_url = 'https://api.spotify.com/v1/me/top/artists?limit=50&time_range=' + time_range;
 				$.ajax({
