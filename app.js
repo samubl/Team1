@@ -14,7 +14,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = '4293c4dc48304434aba4777d650d0c6d'; // Your client id
 var client_secret = '91ec585bbb66403f8abbd520784c6d4d'; // Your secret
-var redirect_uri = 'https://a8-team1music.herokuapp.com/callback'; // Your redirect uri
+var redirect_uri = 'https://a9-team1music.herokuapp.com/callback'; // Your redirect uri
 //var redirect_uri = 'http://localhost:3000/callback';
 
 //route javascript files 
