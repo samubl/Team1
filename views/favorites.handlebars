@@ -16,6 +16,18 @@
 			</center>
 			<p><b id="fromsource">From Spotify:</b></p>
 		</div>
+		<form id="survey">
+			<p>Was this page what you expected?</p>
+			<input type="checkbox" id="expectedYes" onclick="disableExpected()">
+			<label for="expectedyes">Yes</label>
+			<input type="checkbox" id="expectedNo" onclick="disableExpected()">
+			<label for="expectedno">No</label>
+			<p>Did you find this page useful?</p>
+			<input type="checkbox" id="usefulYes" onclick="disableUseful()">
+			<label for="usefulyes">Yes</label>
+			<input type="checkbox" id="usefulNo" onclick="disableUseful()">
+			<label for="usefulno">No</label>
+		</form>
 		<div class="timerangeselector">
 				<input type="radio" id="short_term" name="time_range" value="short_term">
 				<label for="short_term">Last 2 Weeks</label>
@@ -39,6 +51,14 @@
 	<script>
 		function goBack(){
 			window.history.back();
+		}
+		function disableExpected() {
+			$('#expectedYes').attr("disabled", true);
+			$('#expectedNo').attr("disabled", true);
+		}
+		function disableUseful() {
+			$('#usefulYes').attr("disabled", true);
+			$('#usefulNo').attr("disabled", true);
 		}
 	</script>
 	<script>
@@ -64,7 +84,10 @@
 						var favArtists = "";
 						for (i = 0; i < response.items.length; i++) { 
 							var curr_src = response.items[i].external_urls.spotify;
-							var curr_img = response.items[i].images[0].url;
+							var curr_img = "";
+							if (response.items[i].images.length > 0) {
+								curr_img = response.items[i].images[0].url;
+							}
 							var curr_artist = response.items[i].name;
 							if ((i % 2) == 0) {
 								favArtists += '<div class="row"></div>';
