@@ -28,14 +28,14 @@
 		</div>	
 		<form id="survey">
 			<p>Was this page what you expected?</p>
-			<input type="checkbox" id="expectedYes" onclick="disableExpected()">
+			<input type="checkbox" id="expectedYes" onclick="handleExpectedYes()">
 			<label for="expectedyes">Yes</label>
-			<input type="checkbox" id="expectedNo" onclick="disableExpected()">
+			<input type="checkbox" id="expectedNo" onclick="handleExpectedNo()">
 			<label for="expectedno">No</label>
 			<p>Did you find this page useful?</p>
-			<input type="checkbox" id="usefulYes" onclick="disableUseful()">
+			<input type="checkbox" id="usefulYes" onclick="handleUsefulYes()">
 			<label for="usefulyes">Yes</label>
-			<input type="checkbox" id="usefulNo" onclick="disableUseful()">
+			<input type="checkbox" id="usefulNo" onclick="handleUsefulNo()">
 			<label for="usefulno">No</label>
 		</form>
 		<div class='piecharts'>
@@ -69,9 +69,27 @@
 		function goBack(){
 			window.history.back();
 		}
+		//google analytics for yes and no on favorites being what user expected
+		function handleExpectedYes() {
+			ga("send", "event", "statisticsExpectedYes", "choose");
+			disableExpected();
+		}
+		function handleExpectedNo() {
+			ga("send", "event", "statisticsExpectedNo", "choose");
+			disableExpected();
+		}
 		function disableExpected() {
 			$('#expectedYes').attr("disabled", true);
 			$('#expectedNo').attr("disabled", true);
+		}
+		//google analytics for yes and no on favorites being useful
+		function handleUsefulYes() {
+			ga("send", "event", "statisticsUsefulYes", "choose");
+			disableUseful();
+		}
+		function handleUsefulNo() {
+			ga("send", "event", "statisticsUsefulNo", "choose");
+			disableUseful();
 		}
 		function disableUseful() {
 			$('#usefulYes').attr("disabled", true);
