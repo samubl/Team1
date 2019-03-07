@@ -10,9 +10,7 @@
 	<!-- bootstrap container for page content -->
 	<div class="container">
 		<!-- Back Button, Username -->
-		<!-- TODO: Lawrence: better default username, default image -->
 		<div class="backandname">
-			<button type="button" onclick="goBack()" id="back">Back</button> 
 			<h1>{{username}}</h1>
 		</div>	
 		<div class="spacer"></div>
@@ -25,7 +23,7 @@
 			<div class="sub">
 				<!-- Links to Stats and Favorites user pages. Need to add link to Stats page and fill those pages -->
 				<h3><a href="/Statistics" id="statslink">Statistics </a><span class="glyphicon glyphicon-stats"></span></h3><hr>
-				<h3><a href="/Favorites/page_A" id="favslink">Favorites</a></h3>
+				<h3><a href="/Favorites/page_A" id="favslink">Favorites </a><span class="glyphicon glyphicon-heart"></span></h3><hr>
 			</div>
 		</div>
 		<!-- At a Glance Table -->
@@ -67,7 +65,7 @@
 			</div>
 		</div>
 		<div class="logout">
-			<h3><a href='/'>Log out</a></h3>
+			<h4><a href='/'>Log out</a></h4>
 		</div>
 		<!-- Navbar Section -->
 		<ul class="navbar">

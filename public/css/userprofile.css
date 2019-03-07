@@ -1,9 +1,13 @@
 /* Back Button and Username display */
-.backandname h1 {
+.backandname{
     text-align: center;
-    justify-content: center;
-    display: inline-block;
-    padding-left: 20px;
+}
+/* logout alignment*/
+
+.logout{
+    width:100%;
+    margin:auto;
+    text-align: right;
 }
 
 /* Spacer between top of page and profile picture */
@@ -16,9 +20,11 @@
 /* Profile Picture and Statistics and Favorites Section */
 .picandlinks {
     position: relative;
+    border-style:groove;
     overflow: hidden;
     padding: 0px;
-    margin: 5px;
+    margin: auto;
+    margin-bottom:10px;
     width: 100%;
     height: 200px;
 }
@@ -69,6 +75,8 @@
 
 /* At a glance section */
 .glance {
+    border-style:groove;
+    margin:auto;
     width: 100%;
     height: 40%;
 }
