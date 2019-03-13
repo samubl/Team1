@@ -20,7 +20,7 @@ var redirect_uri = 'http://localhost:3000/callback';
 //route javascript files 
 var userprofile = require('./routes/userprofile');
 var favorites = require("./routes/favorites")
-var favoritesTemp = require("./routes/favoritesTemp");
+var playlists = require("./routes/playlists");
 var statistics = require("./routes/statistics")
 var friends = require('./routes/friends');
 var login = require('./routes/login');
@@ -72,7 +72,7 @@ app.get('/alt', login.viewAlt);
 app.get('/userprofile', userprofile.view);
 app.get('/Friends', friends.view);
 app.get('/Favorites/', favorites.view);
-app.get('/Favorites/page_B', favoritesTemp.view);
+app.get('/Playlists', playlists.view);
 app.get('/Statistics', statistics.view);
 
 //some routes to handle connecting to spotify

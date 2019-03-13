@@ -7,5 +7,5 @@ var data = require('../data.json');
 
 exports.view = function(req, res){
   console.log(data);
-  res.render('favoritesTemp',data);
+  res.render('playlists',data);
 };
