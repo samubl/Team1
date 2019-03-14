@@ -72,7 +72,7 @@
 			<li><a href="/userprofile" class="active">Account</a></li>
 			<li><a href='/Playlists'>Playlists</a></li>
 			<li><a href="/Statistics">Statistics</a></li>
-			<li><a href='/Favorites/'>Favorites</a></li>
+			<li><a href='/Favorites'>Favorites</a></li>
 		</ul>
 	</div>
 
@@ -146,6 +146,8 @@
 						$("#lastsource").attr("href", "https://www.spotify.com/us/");
 						$("#lastsource").text("Spotify");
 						$("#lastlistenedsong").show();
+						//save last artist's id
+						localStorage.setItem("last_artist_id", response.items[0].track.artists[0].id);
 					}
 				});
 			}

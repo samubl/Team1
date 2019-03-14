@@ -71,7 +71,7 @@ app.get('/', login.view);
 app.get('/alt', login.viewAlt);
 app.get('/userprofile', userprofile.view);
 app.get('/Friends', friends.view);
-app.get('/Favorites/', favorites.view);
+app.get('/Favorites', favorites.view);
 app.get('/Playlists', playlists.view);
 app.get('/Statistics', statistics.view);
 

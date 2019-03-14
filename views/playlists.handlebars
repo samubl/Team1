@@ -15,7 +15,7 @@
 			</center>
 			<p><b>Playlists from Spotify:</b></p>
 		</div>
-		<h1 id="favsmsg" style="display: none">No Favorites Yet :( Try connecting a Spotify account!</h1>
+		<h1 id="favsmsg" style="display: none">No Playlists Yet :( Try connecting a Spotify account!</h1>
 		<div class="playlists"></div>
 		<!-- Navbar Section -->
 		<ul class="navbar">
@@ -35,6 +35,43 @@
 	</script>
 	<script>
 		(function () {
+
+			/**
+			 * Call Spotify API to get the playlists of the user
+			 */
+			function getPlaylists() {
+				$('#favsmsg').hide();
+				$('.playlists').hide();
+				//call get playlists api
+				$.ajax({
+					url: 'https://api.spotify.com/v1/me/playlists?',
+					headers: {
+						'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+					},
+					success: function(response) {
+						console.log(response);
+						//update the artist image, hyper link, and names
+						var i;
+						var playlists = "";
+						for (i = 0; i < response.items.length; i++) { 
+							var curr_src = response.items[i].external_urls.spotify;
+							var curr_img = response.items[i].images[0].url;
+							var curr_artist = response.items[i].name;
+							if ((i % 2) == 0) {
+								playlists += '<div class="row"></div>';
+							}
+							playlists += '<div class="Playlist" id="' + i + '">' + '<div class="thumbnail">' +
+										'<a href="' + curr_src + '"><p>' + curr_artist + '</p></a>' +
+										'<a href="' + curr_src + '"><img src="' + curr_img + '"></a>' +
+										'</div></div>';
+						}
+						playlists += '<div class="bigrow"></div>';
+						$('.playlists').html(playlists);
+						$('.playlists').show();
+					}
+				});
+			}
+
 			//can use the same access_token!
 			if (localStorage.getItem("access_token") == 'undefined') {				
 				//no data yet
@@ -43,57 +80,8 @@
                 $('.navbar').show();
 							
 			} else {
-			 	console.log(localStorage.getItem("access_token"));
-				console.log("Ready for API calls for " + localStorage.getItem("favorites"));
-                localStorage.setItem("favorites", 'playlists');
-				if (localStorage.getItem("favorites") == 'artists') {
-					//call get top artists api
-					$.ajax({
-						url: 'https://api.spotify.com/v1/me/top/artists?limit=6',
-						headers: {
-							'Authorization': 'Bearer ' + localStorage.getItem("access_token")
-						},
-						success: function(response) {
-							console.log(response);
-							//update the artist image, hyper link, and names
-							var i;
-							for (i = 0; i < response.items.length; i++) { //request only made for 6 tracks
-								var curr_src = response.items[i].external_urls.spotify;
-								var curr_img = response.items[i].images[0].url;
-								var curr_artist = response.items[i].name;
-								$('#'+(i+1) + ' img').attr("src", curr_img);
-								$('#'+(i+1) + ' a').attr("href", curr_src);
-								$('#'+(i+1) + ' a p').text(curr_artist);
-							}
-							$('.playlists').show();
-							$('#favsmsg').hide();
-						}
-					});
-				} else {
-					//call get playlists api
-					$.ajax({
-						url: 'https://api.spotify.com/v1/me/playlists?limit=6',
-						headers: {
-							'Authorization': 'Bearer ' + localStorage.getItem("access_token")
-						},
-						success: function(response) {
-							console.log(response);
-							//update the artist image, hyper link, and names
-							var i;
-							for (i = 0; i < 6; i++) { //request only made for 6 tracks
-								var curr_src = response.items[i].external_urls.spotify;
-								var curr_img = response.items[i].images[0].url;
-								var curr_artist = response.items[i].name;
-								$('#'+(i+1) + ' img').attr("src", curr_img);
-								$('#'+(i+1) + ' a').attr("href", curr_src);
-								$('#'+(i+1) + ' a p').text(curr_artist);
-							}
-							$('.playlists').show();
-							$('#favsmsg').hide();
-						}
-					});
-
-				}
+				// load playlists
+				getPlaylists();
 			}
 		})();
 	</script>

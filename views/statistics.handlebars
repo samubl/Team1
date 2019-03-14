@@ -16,7 +16,7 @@
 			<button type="button" onclick="goBack()" id="back">Back</button> 
 			<h1>Statistics</h1>
 		</div>	
-		<form id="survey">
+		<form id="survey" style="display: none">
 			<p>Was this page what you expected?</p>
 			<input type="checkbox" id="expectedYes" onclick="handleExpectedYes()">
 			<label for="expectedyes">Yes</label>
@@ -28,12 +28,13 @@
 			<input type="checkbox" id="usefulNo" onclick="handleUsefulNo()">
 			<label for="usefulno">No</label>
 		</form>
+		<div class="lastlistenedgenres">
+		</div>
 		<div class='piecharts'>
 			<div id="2weekspiechart"></div>
 			<div id="6monthspiechart"></div>
 			<div id="alltimepiechart"></div>
 		</div>
-		<h3>Statistics</h3>
 		<h4 id="statsmsg" style="display: none">No Stats yet. :( Try Connecting with Spotify first!</h4>
 		<ul class="stats">
 			{{#with statistics}}
@@ -197,6 +198,28 @@
 				});
 			}
 
+			/**
+			 * Get the Genres of the last listened to artist
+			 */
+			function lastArtistGenres(access_token, artist_id) {
+				var artists_url = 'https://api.spotify.com/v1/artists/' + artist_id;
+				$.ajax({
+					url: artists_url,
+					headers: {
+						'Authorization': 'Bearer ' + access_token
+					},
+					success: function(response) {
+						console.log(response);
+						var newHTML = '<b>Genres of ' + '<a href="' + response.external_urls.spotify + '">' +
+										 response.name + '</a>' + ', the artist you recently listened to:</b>';
+						for (var i = 0; i < response.genres.length; i++) {
+							newHTML += '<li>' + response.genres[i] + '</li>'
+						}
+						$('.lastlistenedgenres').html(newHTML);
+					}
+				});
+			}
+
 			//can use the same access_token!
 			if (localStorage.getItem("access_token") == 'undefined') {
 				//no data yet
@@ -208,9 +231,12 @@
 				$('.stats').hide();
 				$('#statsmsg').hide();
 				$('.piecharts').hide();
+				$('.lastlistenedgenres').hide();
 				console.log("Ready for API calls! Using access_token " + localStorage.getItem("access_token"));
 				produceStats(localStorage.getItem("access_token"));
+				lastArtistGenres(localStorage.getItem("access_token"), localStorage.getItem("last_artist_id"));
 				$('.piecharts').show();
+				$('.lastlistenedgenres').show();
 			}
 
 		})();
